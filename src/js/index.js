@@ -1,21 +1,19 @@
-import { find, curry } from 'ramda'
-import Either from './monads/Either'
+import { startCase, partial } from 'lodash'
+import IO from './monads/IO'
 
-const student = {
-  0: { name: 'Alex' },
-  123456: { name: 'Sergey' },
+const read = (document, selector) => () =>
+  document.querySelector(selector).innerHTML
+
+const write = (document, selector) => (val) => {
+  document.querySelector(selector).innerHTML = val
+  return val
 }
 
-const safeFindObject = curry((db, id) => {
-  const obj = db[id]
+const readDom = partial(read, document)
+const writeDom = partial(write, document)
 
-  if (obj) {
-    return new Either.of(obj)
-  }
+const changeToStartCase = IO.from(readDom('#student-name'))
+  .map(startCase)
+  .map(writeDom('#student-name'))
 
-  return new Either.left(`Object not found whith ID ${id}`)
-})
-
-const findStudent = safeFindObject(student)
-
-findStudent(0)
+changeToStartCase.run()
