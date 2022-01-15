@@ -1,0 +1,36 @@
+{
+  "name": "lern",
+  "version": "2.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "NODE_ENV=development gulp dev",
+    "build": "NODE_ENV=production gulp build",
+    "js:lint": "eslint src/js/*.js",
+    "js:fix": "eslint --fix src/js/*.js",
+  },
+  "author": "",
+  "license": "ISC",
+  "browserslist": [
+    "last 2 version",
+    "not dead"
+  ],
+  "devDependencies": {
+    "@babel/core": "^7.16.5",
+    "@babel/eslint-parser": "^7.16.5",
+    "@babel/preset-env": "^7.16.5",
+    "babel-loader": "^8.2.3",
+    "del": "^6.0.0",
+    "eslint": "^8.5.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-prettier": "^4.0.0",
+    "prettier": "^2.5.1",
+    "webpack": "^5.65.0",
+    "webpack-stream": "^7.0.0"
+  },
+  "dependencies": {
+    "ramda": "^0.27.2"
+  }
+}
