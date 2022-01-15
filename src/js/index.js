@@ -1,9 +1,21 @@
-import { toUpper } from 'ramda'
+import { find, curry } from 'ramda'
+import Either from './monads/Either'
 
-import Wrapper from './Wrapper'
-
-const log = (val) => {
-  console.log('log :', val)
+const student = {
+  0: { name: 'Alex' },
+  123456: { name: 'Sergey' },
 }
 
-Wrapper.of('Hello Monads').map(toUpper).map(log)
+const safeFindObject = curry((db, id) => {
+  const obj = db[id]
+
+  if (obj) {
+    return new Either.of(obj)
+  }
+
+  return new Either.left(`Object not found whith ID ${id}`)
+})
+
+const findStudent = safeFindObject(student)
+
+findStudent(0)
