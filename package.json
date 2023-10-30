@@ -3,7 +3,7 @@
   "version": "2.0.0",
   "description": "",
   "scripts": {
-    "dev": "NODE_ENV=development webpack serve --open",
+    "dev": "webpack serve --open --mode=development",
     "js:lint": "eslint src/js/*.js",
     "js:fix": "eslint --fix src/js/*.js"
   },
@@ -17,6 +17,7 @@
     "@babel/core": "^7.16.5",
     "@babel/eslint-parser": "^7.16.5",
     "@babel/preset-env": "^7.16.5",
+    "@babel/preset-react": "^7.22.15",
     "babel-loader": "^8.2.3",
     "del": "^6.0.0",
     "eslint": "^8.5.0",

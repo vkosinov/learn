@@ -1,19 +1,20 @@
-import { startCase, partial } from 'lodash'
-import IO from './monads/IO'
+import Didact from './didact'
 
-const read = (document, selector) => () =>
-  document.querySelector(selector).innerHTML
+/** @jsx Didact.createElement */
+const container = document.getElementById('root')
 
-const write = (document, selector) => (val) => {
-  document.querySelector(selector).innerHTML = val
-  return val
+const updateValue = (e) => {
+  rerender(e.target.value)
 }
 
-const readDom = partial(read, document)
-const writeDom = partial(write, document)
+const rerender = (value) => {
+  const element = (
+    <div>
+      <input onInput={updateValue} value={value} />
+      <h2>Hello {value}</h2>
+    </div>
+  )
+  Didact.render(element, container)
+}
 
-const changeToStartCase = IO.from(readDom('#student-name'))
-  .map(startCase)
-  .map(writeDom('#student-name'))
-
-changeToStartCase.run()
+rerender('World')
