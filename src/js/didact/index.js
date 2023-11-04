@@ -6,6 +6,8 @@ let deletions = null
 let nextUnitOfWork = null
 let currentRoot = null
 let wipRoot = null
+let wipFiber = null
+let hookIndex = null
 
 const commitRoot = () => {
   deletions.forEach(commitWork)
@@ -72,6 +74,10 @@ const performUnitOfWork = (fiber) => {
 }
 
 const updateFunctionComponent = (fiber) => {
+  wipFiber = fiber
+  hookIndex = 0
+  wipFiber.hooks = []
+
   const children = [fiber.type(fiber.props)]
   reconcileChildren(fiber, children)
 }
@@ -142,9 +148,53 @@ const reconcileChildren = (wipFiber, elements) => {
   }
 }
 
+const useState = (initial) => {
+  // Проверяем есть ли у нас старый хук
+  const oldHook =
+    wipFiber.alternate &&
+    wipFiber.alternate.hooks &&
+    wipFiber.alternate.hooks[hookIndex]
+
+  const hook = {
+    // Копируем состояние из старого хука если нет инициализируем
+    state: oldHook ? oldHook.state : initial,
+    queue: [],
+  }
+
+  const actions = oldHook ? oldHook.queue : []
+
+  actions.forEach((action) => {
+    hook.state = action(hook.state)
+  })
+
+  // Функция для изменения состояния
+  const setState = (action) => {
+    // Добавляем в очередь
+    hook.queue.push(action)
+
+    // устанавливаем новый root, что бы рабочий цикл мог начать новую фазу
+    wipRoot = {
+      dom: currentRoot.dom,
+      props: currentRoot.props,
+      alternate: currentRoot,
+    }
+
+    nextUnitOfWork = wipRoot
+    deletions = []
+  }
+
+  // Добавляем новый хук в fiber
+  wipFiber.hooks.push(hook)
+  // Увеличиваем индекс хука на единицу
+  hookIndex += 1
+  // Возвращаем состояние
+  return [hook.state, setState]
+}
+
 const Didact = {
   createElement,
   render,
+  useState,
 }
 
 export default Didact
