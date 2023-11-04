@@ -46,13 +46,15 @@ const workLoop = (deadline) => {
 requestIdleCallback(workLoop)
 
 const performUnitOfWork = (fiber) => {
-  // Создаем новый узел и добавляем его в DOM
-  if (!fiber.dom) {
-    fiber.dom = createDom(fiber)
-  }
+  // Обработка функционального компонента
 
-  const elements = fiber.props.children
-  reconcileChildren(fiber, elements)
+  const isFunctionalComponent = fiber.type instanceof Function
+
+  if (isFunctionalComponent) {
+    updateFunctionComponent(fiber)
+  } else {
+    updateHostComponent(fiber)
+  }
 
   if (fiber.child) {
     return fiber.child
@@ -67,6 +69,20 @@ const performUnitOfWork = (fiber) => {
 
     nextFiber = nextFiber.parent
   }
+}
+
+const updateFunctionComponent = (fiber) => {
+  const children = [fiber.type(fiber.props)]
+  reconcileChildren(fiber, children)
+}
+
+const updateHostComponent = (fiber) => {
+  if (!fiber.dom) {
+    fiber.dom = createDom(fiber)
+  }
+
+  const elements = fiber.props.children
+  reconcileChildren(fiber, elements)
 }
 
 const reconcileChildren = (wipFiber, elements) => {
