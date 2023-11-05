@@ -1,1 +1,1 @@
-import './didact/example'
+import './bicycle/index'
