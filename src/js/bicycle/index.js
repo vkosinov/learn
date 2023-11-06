@@ -25,8 +25,19 @@ import createElement from '../didact/utils/create-element'
 const domRoot = document.getElementById('root')
 
 const tick = () => {
-  const time = new Date().toLocaleTimeString()
-  const clockElement = <h1>{time}</h1>
+  const format = (count) => {
+    return count < 10 ? `0${count}` : count
+  }
+
+  const hours = new Date().getHours()
+  const minutest = new Date().getMinutes()
+  const seconds = new Date().getSeconds()
+
+  const clockElement = (
+    <h1>
+      <b>{format(hours)}</b>:<b>{format(minutest)}</b>:<b>{format(seconds)}</b>
+    </h1>
+  )
 
   render(clockElement, domRoot)
 }
