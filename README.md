@@ -1,6 +1,7 @@
-# Didact
+# own React
 
 - [Didact](https://github.com/vkosinov/learn/blob/main/src/js/didact)
+- [Bicycle](https://github.com/vkosinov/learn/blob/main/src/js/bicycle)
 
 # FP
 

@@ -12,7 +12,8 @@ const reconcile = (parentDom, instance, element) => {
   }
 
   if (element === null) {
-    parentDom.replaceChild(instance.dom)
+    // Убираем инстанс
+    parentDom.removeChild(instance.dom)
     return null
   }
 
@@ -25,11 +26,25 @@ const reconcile = (parentDom, instance, element) => {
     return instance
   }
 
-  // Заменяем инстанс
-  const newInstance = instantiate(element)
-  parentDom.replaceChild(newInstance.dom, instance.dom)
+  if (typeof instance.element.type === 'string') {
+    // Обновляем инстанс DOM-элемента
+    updateDomProperties(instance.dom, instance.element.props, element.props)
+    instance.childInstances = reconcileChildren(instance, element)
+    instance.element = element
 
-  return newInstance
+    return instance
+  }
+  // Обновляем инстанс компонента
+  instance.publicInstance.props = element.props
+  const childElement = instance.publicInstance.render()
+  const oldChildInstance = instance.childInstance
+  const childInstance = reconcile(parentDom, oldChildInstance, childElement)
+
+  instance.dom = childInstance.dom
+  instance.childInstance = childInstance
+  instance.element = element
+
+  return instance
 }
 
 const reconcileChildren = (instance, element) => {
