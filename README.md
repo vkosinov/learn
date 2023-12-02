@@ -3,6 +3,10 @@
 - [Didact](https://github.com/vkosinov/learn/blob/main/src/js/didact)
 - [Bicycle](https://github.com/vkosinov/learn/blob/main/src/js/bicycle)
 
+# TEST
+
+- [Playwright](https://github.com/vkosinov/learn/blob/main/src/js/playwright)
+
 # FP
 
 ## Monads
