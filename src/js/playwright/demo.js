@@ -1,26 +1,14 @@
 const { webkit, chromium, firefox } = require('playwright')
 
-const url = 'https://playwright.dev/'
-const getPathScreenshot = (fileName) =>
-  `src/js/playwright/screenshot/${fileName}`
-
-const func = async () => {
-  const browserTypes = [webkit, chromium, firefox]
-
-  for (const browserType of browserTypes) {
-    const browser = await browserType.launch() // запуск браузера
-    const page = await browser.newPage() // открываем страницу
-
-    await page.goto(url) // переходим на сайт
+;(async () => {
+  for (const browserType of [webkit, firefox, chromium]) {
+    const browser = await browserType.launch() // запуск каждого браузера
+    const page = await browser.newPage() // откроем страницу
+    await page.goto('https://github.com/microsoft/playwright') // данного сайта
     await page.screenshot({
-      path: getPathScreenshot(
-        `screenshot-${browserType.name()}-${new Date().toString()}.png`
-      ), // сохраняем скриншот
+      path: `screenshot-${browserType.name()}.png`, // сохраняем скриншот
     })
     await browser.close() // закрываем браузер
-
     console.log(`success: ${browserType.name()}`) // чтобы отследить прогресс
   }
-}
-
-func()
+})()
