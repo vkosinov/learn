@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "webpack serve --open --mode=development",
     "js:lint": "eslint src/js/*.js",
-    "js:fix": "eslint --fix src/js/*.js"
+    "js:fix": "eslint --fix src/js/*.js",
+    "playwright": "node src/js/playwright/demo.js"
   },
   "author": "",
   "license": "ISC",
