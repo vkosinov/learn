@@ -1,14 +1,15 @@
-const { webkit, chromium, firefox } = require('playwright')
+const { webkit, devices } = require('playwright')
+
+const iPhone11Pro = devices['iPhone 11 Pro']
 
 ;(async () => {
-  for (const browserType of [webkit, firefox, chromium]) {
-    const browser = await browserType.launch() // запуск каждого браузера
-    const page = await browser.newPage() // откроем страницу
-    await page.goto('https://github.com/microsoft/playwright') // данного сайта
-    await page.screenshot({
-      path: `screenshot-${browserType.name()}.png`, // сохраняем скриншот
-    })
-    await browser.close() // закрываем браузер
-    console.log(`success: ${browserType.name()}`) // чтобы отследить прогресс
-  }
+  const browser = await webkit.launch({
+    headless: false,
+  })
+  const context = await browser.newContext({
+    // создание контекста
+    ...iPhone11Pro,
+  })
+  const page = await context.newPage() // создание страницы в контексте
+  await page.goto('https://github.com/microsoft/playwright')
 })()
