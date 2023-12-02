@@ -1,19 +1,17 @@
- on:
+on:
   push:
     branches:
-    - main
+      - main
 jobs:
-  e2e-tests:
-    runs-on: ubuntu-latest # or macos-latest, windows-latest
-# На каждый push в main используем ubuntu-latest (вообще можно использовать что угодно, потому что Playwright работает везде)
-
+  tests_e2e:
+    name: Run end-to-end tests
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2  # чекаутим репозиторий
-      - uses: actions/setup-node@v1  # установим Node
-      - uses: microsoft/playwright-github-action@v1  # подготовим окружение
-      - uses: actions/upload-artifact@v2
-        with:
-          name: screenshots
-          path: screenshot*.png"
-	- run: npm install  # проинсталлируем зависимости
-	- run: src/js/playwright/demo.js  # запустим приложение
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+      - name: Install dependencies
+        run: npm ci
+      - name: Install playwright browsers
+        run: npx playwright install --with-deps
+      - name: Run tests
+        run: npx playwright test
