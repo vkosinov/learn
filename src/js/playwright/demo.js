@@ -1,15 +1,16 @@
-const { webkit, devices } = require('playwright')
-
-const iPhone11Pro = devices['iPhone 11 Pro']
+const { webkit, chromium, firefox, devices } = require('playwright')
 
 ;(async () => {
-  const browser = await webkit.launch({
+  const browser = await chromium.launch({
     headless: false,
   })
-  const context = await browser.newContext({
-    // создание контекста
-    ...iPhone11Pro,
-  })
-  const page = await context.newPage() // создание страницы в контексте
-  await page.goto('https://github.com/microsoft/playwright')
+  const context = await browser.newContext()
+  const page = await context.newPage()
+  page.on('frameattached', (frame) =>
+    console.log(`frames: ${page.frames().length}`)
+  )
+  page.on('framedetached', (frame) =>
+    console.log(`frames: ${page.frames().length}`)
+  )
+  await page.goto('https://theverge.com')
 })()
