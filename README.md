@@ -6,6 +6,7 @@
 # Browser testing
 
 - [Playwright](https://github.com/vkosinov/learn/blob/main/src/js/playwright)
+- [Cypress](https://github.com/vkosinov/learn/blob/main/src/js/cypress)
 
 # FP
 
