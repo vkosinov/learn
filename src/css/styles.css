@@ -1,0 +1,14 @@
+form {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  width: 340px;
+  margin: 0 auto;
+  justify-content: center;
+}
+
+input,
+button {
+  height: 24px;
+  border: 1px solid gray;
+}
