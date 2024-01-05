@@ -18,6 +18,11 @@ module.exports = {
       template: './src/public/index.html',
       favicon: './src/public/favicon.ico',
     }),
+    new HtmlWebpackPlugin({
+      template: './src/public/login.html',
+      filename: 'login.html',
+      favicon: './src/public/favicon.ico',
+    }),
   ],
 
   module: {
