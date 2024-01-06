@@ -1,6 +1,7 @@
 const form = document.getElementById('form')
 const loginForm = document.getElementById('login')
 const updateButton = document.getElementById('update')
+const deleteButton = document.getElementById('delete')
 
 const BASE_URL = 'http://localhost:5000/api/auth'
 
@@ -89,4 +90,28 @@ if (updateButton) {
   }
 
   updateButton.addEventListener('click', handleUserUpdate)
+}
+
+if (deleteButton) {
+  const data = JSON.stringify({
+    id: '65991bba1ce0027092bef7bb',
+  })
+
+  const handleUserDelete = () => {
+    fetch(`${BASE_URL}/delete-user`, {
+      method: 'DELETE',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: data,
+    })
+      .then((response) => {
+        console.info('response =', response)
+        loginForm.reset()
+      })
+      .catch((err) => console.error(err))
+  }
+
+  deleteButton.addEventListener('click', handleUserDelete)
 }
