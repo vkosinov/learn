@@ -3,11 +3,11 @@
   "version": "2.0.0",
   "description": "",
   "scripts": {
-    "dev": "webpack serve --open --mode=development",
+    "start": "webpack serve --open --mode=development",
     "js:lint": "eslint src/js/*.js",
     "js:fix": "eslint --fix src/js/*.js",
     "playwright": "node src/js/playwright/demo.js",
-    "start": "node src/js/authentication/backend/server.js",
+    "server": "node src/js/authentication/backend/server.js",
     "dev:server": "nodemon src/js/authentication/backend/server.js"
   },
   "author": "",

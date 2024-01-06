@@ -1,6 +1,8 @@
 const form = document.getElementById('form')
 const loginForm = document.getElementById('login')
-const baseUrl = 'http://localhost:5000/api/auth'
+const updateButton = document.getElementById('update')
+
+const BASE_URL = 'http://localhost:5000/api/auth'
 
 if (form) {
   const handleSubmit = (evt) => {
@@ -15,7 +17,7 @@ if (form) {
 
     console.info('data = ', data)
 
-    fetch(`${baseUrl}/register`, {
+    fetch(`${BASE_URL}/register`, {
       method: 'POST',
       mode: 'cors',
       headers: {
@@ -46,7 +48,7 @@ if (loginForm) {
 
     console.info('data = ', data)
 
-    fetch(`${baseUrl}/login`, {
+    fetch(`${BASE_URL}/login`, {
       method: 'POST',
       mode: 'cors',
       headers: {
@@ -62,4 +64,29 @@ if (loginForm) {
   }
 
   loginForm.addEventListener('submit', handleSubmit)
+}
+
+if (updateButton) {
+  const data = JSON.stringify({
+    id: '65991c9dc38e1a667c5139fd',
+    role: 'admin',
+  })
+
+  const handleUserUpdate = () => {
+    fetch(`${BASE_URL}/update`, {
+      method: 'POST',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: data,
+    })
+      .then((response) => {
+        console.info('response =', response)
+        loginForm.reset()
+      })
+      .catch((err) => console.error(err))
+  }
+
+  updateButton.addEventListener('click', handleUserUpdate)
 }
