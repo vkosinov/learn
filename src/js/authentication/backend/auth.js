@@ -2,10 +2,7 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const User = require('./user')
 
-const JWT_SECRET =
-  'c6d9f836e8324187f103e42fad03573d2808e6c35793de546f717488fb739678117b39'
-
-const MAX_AGE = 3 * 60 * 60 // 3hrs in sec
+const { JWT_SECRET, MAX_AGE } = require('./constants')
 
 exports.register = async (req, res) => {
   const { username, password } = req.body

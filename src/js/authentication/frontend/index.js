@@ -20,11 +20,11 @@ if (form) {
 
     fetch(`${BASE_URL}/register`, {
       method: 'POST',
-      mode: 'cors',
       headers: {
         'Content-Type': 'application/json',
       },
       body: data,
+      credentials: 'same-origin',
     })
       .then((response) => {
         console.info('response =', response)
@@ -56,6 +56,7 @@ if (loginForm) {
         'Content-Type': 'application/json',
       },
       body: data,
+      credentials: 'include',
     })
       .then((response) => {
         console.info('response =', response)
@@ -69,14 +70,13 @@ if (loginForm) {
 
 if (updateButton) {
   const data = JSON.stringify({
-    id: '659980aa7b8bf68b732eec29',
+    id: '6599915dd16b272bc52ec2c6',
     role: 'admin',
   })
 
   const handleUserUpdate = () => {
     fetch(`${BASE_URL}/update`, {
-      method: 'POST',
-      mode: 'cors',
+      method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
       },
@@ -94,17 +94,17 @@ if (updateButton) {
 
 if (deleteButton) {
   const data = JSON.stringify({
-    id: '65993f97cceef61b8841f082',
+    id: '659980aa7b8bf68b732eec29',
   })
 
   const handleUserDelete = () => {
     fetch(`${BASE_URL}/delete-user`, {
       method: 'DELETE',
-      mode: 'cors',
       headers: {
         'Content-Type': 'application/json',
       },
       body: data,
+      credentials: 'include',
     })
       .then((response) => {
         console.info('response =', response)
