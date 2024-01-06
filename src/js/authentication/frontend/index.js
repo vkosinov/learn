@@ -69,7 +69,7 @@ if (loginForm) {
 
 if (updateButton) {
   const data = JSON.stringify({
-    id: '65991c9dc38e1a667c5139fd',
+    id: '659980aa7b8bf68b732eec29',
     role: 'admin',
   })
 
@@ -94,7 +94,7 @@ if (updateButton) {
 
 if (deleteButton) {
   const data = JSON.stringify({
-    id: '65991bba1ce0027092bef7bb',
+    id: '65993f97cceef61b8841f082',
   })
 
   const handleUserDelete = () => {

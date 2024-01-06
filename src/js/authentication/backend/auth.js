@@ -1,5 +1,11 @@
 const bcrypt = require('bcryptjs')
+const jwt = require('jsonwebtoken')
 const User = require('./user')
+
+const JWT_SECRET =
+  'c6d9f836e8324187f103e42fad03573d2808e6c35793de546f717488fb739678117b39'
+
+const MAX_AGE = 3 * 60 * 60 // 3hrs in sec
 
 exports.register = async (req, res) => {
   const { username, password } = req.body
@@ -17,11 +23,26 @@ exports.register = async (req, res) => {
   try {
     const hash = await bcrypt.hash(password, 10)
 
-    return await User.create({ username, password: hash }).then((user) =>
-      res.status(200).json({ message: 'User successfully created', user })
+    const user = await User.create({ username, password: hash })
+
+    const token = jwt.sign(
+      { id: user._id, username, role: user.role },
+      JWT_SECRET,
+      {
+        expiresIn: MAX_AGE,
+      }
     )
+
+    res.cookie('jwt', token, {
+      httpOnly: true,
+      maxAge: MAX_AGE * 1000, // 3hrs in ms
+    })
+
+    res
+      .status(201)
+      .json({ message: 'User successfully created', user: user._id })
   } catch (err) {
-    res.status(401).json({
+    res.status(400).json({
       message: 'User not successful created',
       error: err.message,
     })
@@ -42,9 +63,22 @@ exports.login = async (req, res) => {
       const result = await bcrypt.compare(password, user.password)
 
       if (result) {
-        res.status(200).json({
-          message: 'Login successful',
-          user,
+        const token = jwt.sign(
+          { id: user._id, username, role: user.role },
+          JWT_SECRET,
+          {
+            expiresIn: MAX_AGE, // 3hrs in sec
+          }
+        )
+
+        res.cookie('jwt', token, {
+          httpOnly: true,
+          maxAge: MAX_AGE * 1000, // 3hrs in ms
+        })
+
+        res.status(201).json({
+          message: 'User successfully Logged in',
+          user: user._id,
         })
       } else {
         res.status(400).json({ message: 'Login not successful' })
