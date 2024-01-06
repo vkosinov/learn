@@ -1,3 +1,4 @@
+const bcrypt = require('bcryptjs')
 const User = require('./user')
 
 exports.register = async (req, res) => {
@@ -14,7 +15,9 @@ exports.register = async (req, res) => {
   }
 
   try {
-    return await User.create({ username, password }).then((user) =>
+    const hash = await bcrypt.hash(password, 10)
+
+    return await User.create({ username, password: hash }).then((user) =>
       res.status(200).json({ message: 'User successfully created', user })
     )
   } catch (err) {
@@ -29,17 +32,23 @@ exports.login = async (req, res) => {
   const { username, password } = req.body
 
   try {
-    const user = await User.findOne({ username, password })
+    const user = await User.findOne({ username })
 
     if (!user) {
       res
         .status(401)
         .json({ message: 'Login not successful', error: 'User not found' })
     } else {
-      res.status(200).json({
-        message: 'Login successful',
-        user,
-      })
+      const result = await bcrypt.compare(password, user.password)
+
+      if (result) {
+        res.status(200).json({
+          message: 'Login successful',
+          user,
+        })
+      } else {
+        res.status(400).json({ message: 'Login not successful' })
+      }
     }
   } catch (err) {
     res.status(400).json({
