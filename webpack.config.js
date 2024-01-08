@@ -23,6 +23,11 @@ module.exports = {
       filename: 'login.html',
       favicon: './src/public/favicon.ico',
     }),
+    new HtmlWebpackPlugin({
+      template: './src/public/users.html',
+      filename: 'users.html',
+      favicon: './src/public/favicon.ico',
+    }),
   ],
 
   module: {

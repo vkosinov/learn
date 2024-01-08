@@ -12,3 +12,21 @@ button {
   height: 24px;
   border: 1px solid gray;
 }
+
+.error {
+  background-color: red;
+  width: 340px;
+  margin: 0 auto;
+  margin-top: 16px;
+}
+
+table,
+th,
+td {
+  border: 1px solid black;
+}
+
+th,
+td {
+  padding: 4px;
+}

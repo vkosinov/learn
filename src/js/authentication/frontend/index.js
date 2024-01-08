@@ -1,7 +1,9 @@
 const form = document.getElementById('form')
 const loginForm = document.getElementById('login')
 const updateButton = document.getElementById('update')
-const deleteButton = document.getElementById('delete')
+
+const errorBlock = document.getElementById('error')
+const users = document.getElementById('users')
 
 const BASE_URL = 'http://localhost:5000/api/auth'
 
@@ -59,10 +61,25 @@ if (loginForm) {
       credentials: 'include',
     })
       .then((response) => {
-        console.info('response =', response)
+        response.json().then((res) => {
+          if (!response.ok) {
+            if (errorBlock) {
+              errorBlock.textContent = `${res.message}. ${
+                res.error ? res.error : ''
+              }`
+            }
+          } else {
+            location.assign('/users.html')
+          }
+        })
+
         loginForm.reset()
       })
-      .catch((err) => console.error(err))
+      .catch((err) => {
+        if (errorBlock) {
+          errorBlock.textContent = err
+        }
+      })
   }
 
   loginForm.addEventListener('submit', handleSubmit)
@@ -92,26 +109,53 @@ if (updateButton) {
   updateButton.addEventListener('click', handleUserUpdate)
 }
 
-if (deleteButton) {
-  const data = JSON.stringify({
-    id: '659980aa7b8bf68b732eec29',
-  })
+if (users) {
+  const handleGetUsers = () => {
+    fetch(`${BASE_URL}/get-users`).then((result) => {
+      result.json().then((data) => {
+        data.user.forEach((user) => {
+          users.innerHTML += `
+          <tr>
+            <td>${user.username}</td>
+            <td>${user.role}</td>
+            <td>
+              <button data-id=${user.id} class="delete">delete</button>
+            </td>
+          </tr>`
+        })
 
-  const handleUserDelete = () => {
-    fetch(`${BASE_URL}/delete-user`, {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: data,
-      credentials: 'include',
-    })
-      .then((response) => {
-        console.info('response =', response)
-        loginForm.reset()
+        const deleteButtons = document.querySelectorAll('.delete')
+
+        if (deleteButtons.length > 0) {
+          const handleUserDelete = (evt) => {
+            const { id } = evt.target.dataset
+
+            const deleteData = JSON.stringify({
+              id,
+            })
+
+            fetch(`${BASE_URL}/delete-user`, {
+              method: 'DELETE',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: deleteData,
+              credentials: 'include',
+            })
+              .then((response) => {
+                console.info('response =', response)
+                loginForm.reset()
+              })
+              .catch((err) => console.error(err))
+          }
+
+          deleteButtons.forEach((deleteButton) => {
+            deleteButton.addEventListener('click', handleUserDelete)
+          })
+        }
       })
-      .catch((err) => console.error(err))
+    })
   }
 
-  deleteButton.addEventListener('click', handleUserDelete)
+  window.addEventListener('load', handleGetUsers)
 }
