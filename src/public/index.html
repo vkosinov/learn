@@ -9,14 +9,19 @@
   </head>
   <body>
     <div id="root">
-      <form id="login">
-        <h3>Login</h3>
+      <h1>Войти</h1>
 
-        <input type="text" name="username" />
-        <input type="text" name="password" />
-        <button>Submit</button>
+      <form id="login">
+        <input type="text" name="username" placeholder="Логин" required />
+        <input type="password" name="password" placeholder="Пароль" required />
+        <button>Отправить</button>
       </form>
+
+      <p><a href="/register.html">Регистрация</a></p>
+      <p><a href="/recovery.html">Сбросить пароль</a></p>
+
       <div id="error" class="error"></div>
+      <div id="success" class="success"></div>
     </div>
   </body>
 </html>

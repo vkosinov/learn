@@ -3,4 +3,6 @@ const JWT_SECRET =
 
 const MAX_AGE = 3 * 60 * 60 // 3hrs in sec
 
-module.exports = { JWT_SECRET, MAX_AGE }
+const MAX_TOKEN_AGE = 60
+
+module.exports = { JWT_SECRET, MAX_AGE, MAX_TOKEN_AGE }

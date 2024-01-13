@@ -42,6 +42,7 @@ const handleGetUsers = () => {
         <tr>
           <td>${user.username}</td>
           <td>${user.role}</td>
+          <td>${user.email}</td>
           <td>
             <button data-id=${user.id} class="delete">delete</button>
           </td>

@@ -21,11 +21,15 @@ button {
 }
 
 .error {
-  background-color: red;
+  background-color: pink;
 }
 
 .success {
-  background-color: green;
+  background-color: greenyellow;
+}
+
+table {
+  margin: 0 auto;
 }
 
 table,
@@ -34,7 +38,15 @@ td {
   border: 1px solid black;
 }
 
+th {
+  background-color: gainsboro;
+}
+
 th,
 td {
   padding: 4px;
+}
+
+h1 {
+  text-align: center;
 }

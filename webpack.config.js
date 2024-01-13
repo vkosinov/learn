@@ -28,6 +28,16 @@ module.exports = {
       filename: 'users.html',
       favicon: './src/public/favicon.ico',
     }),
+    new HtmlWebpackPlugin({
+      template: './src/public/reset.html',
+      filename: 'reset.html',
+      favicon: './src/public/favicon.ico',
+    }),
+    new HtmlWebpackPlugin({
+      template: './src/public/recovery.html',
+      filename: 'recovery.html',
+      favicon: './src/public/favicon.ico',
+    }),
   ],
 
   module: {

@@ -12,8 +12,9 @@ if (registerForm) {
 
     const username = formData.get('username')
     const password = formData.get('password')
+    const email = formData.get('email')
 
-    const data = JSON.stringify({ username, password })
+    const data = JSON.stringify({ username, password, email })
 
     fetch(`${BASE_URL}/register`, {
       method: 'POST',
@@ -31,6 +32,10 @@ if (registerForm) {
             handleError()
             handleSuccess(res)
             registerForm.reset()
+
+            setTimeout(() => {
+              location.assign('/')
+            }, 1000)
           }
         })
       })

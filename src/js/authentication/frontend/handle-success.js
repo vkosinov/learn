@@ -2,7 +2,11 @@ const successBlock = document.getElementById('success')
 
 const handleSuccess = (res) => {
   if (successBlock) {
-    successBlock.textContent = `SUCCESS: ${res.message}`
+    if (res) {
+      successBlock.innerHTML = `SUCCESS: ${res.message}`
+    } else {
+      successBlock.innerHTML = ''
+    }
   }
 }
 

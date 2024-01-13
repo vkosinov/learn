@@ -2,20 +2,19 @@ import BASE_URL from './constants'
 import handleError from './handle-error'
 import handleSuccess from './handle-success'
 
-const loginForm = document.getElementById('login')
+const recoveryForm = document.getElementById('recovery')
 
-if (loginForm) {
+if (recoveryForm) {
   const handleSubmit = (evt) => {
     evt.preventDefault()
 
-    const formData = new FormData(loginForm)
+    const formData = new FormData(recoveryForm)
 
-    const username = formData.get('username')
-    const password = formData.get('password')
+    const email = formData.get('email')
 
-    const data = JSON.stringify({ username, password })
+    const data = JSON.stringify({ email })
 
-    fetch(`${BASE_URL}/login`, {
+    fetch(`${BASE_URL}/recovery`, {
       method: 'POST',
       mode: 'cors',
       headers: {
@@ -30,20 +29,18 @@ if (loginForm) {
             handleError(res)
           } else {
             handleError()
-            handleSuccess(res)
-
-            setTimeout(() => {
-              location.assign('/users.html')
-            }, 1000)
+            handleSuccess({
+              message: `<a href="/reset.html?id=${res.id}&token=${res.token}">Ссылка отправленная на email</a>`,
+            })
           }
         })
 
-        loginForm.reset()
+        recoveryForm.reset()
       })
       .catch((err) => {
         handleError(err)
       })
   }
 
-  loginForm.addEventListener('submit', handleSubmit)
+  recoveryForm.addEventListener('submit', handleSubmit)
 }

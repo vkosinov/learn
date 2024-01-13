@@ -2,20 +2,22 @@ import BASE_URL from './constants'
 import handleError from './handle-error'
 import handleSuccess from './handle-success'
 
-const loginForm = document.getElementById('login')
+const resetForm = document.getElementById('reset')
 
-if (loginForm) {
+if (resetForm) {
   const handleSubmit = (evt) => {
     evt.preventDefault()
 
-    const formData = new FormData(loginForm)
+    const formData = new FormData(resetForm)
 
-    const username = formData.get('username')
     const password = formData.get('password')
+    const urlParams = new URLSearchParams(window.location.search)
+    const token = urlParams.get('token')
+    const id = urlParams.get('id')
 
-    const data = JSON.stringify({ username, password })
+    const data = JSON.stringify({ password, token, id })
 
-    fetch(`${BASE_URL}/login`, {
+    fetch(`${BASE_URL}/reset`, {
       method: 'POST',
       mode: 'cors',
       headers: {
@@ -27,23 +29,24 @@ if (loginForm) {
       .then((response) => {
         response.json().then((res) => {
           if (!response.ok) {
+            handleSuccess()
             handleError(res)
           } else {
             handleError()
             handleSuccess(res)
 
             setTimeout(() => {
-              location.assign('/users.html')
+              location.assign('/')
             }, 1000)
           }
         })
 
-        loginForm.reset()
+        resetForm.reset()
       })
       .catch((err) => {
         handleError(err)
       })
   }
 
-  loginForm.addEventListener('submit', handleSubmit)
+  resetForm.addEventListener('submit', handleSubmit)
 }
