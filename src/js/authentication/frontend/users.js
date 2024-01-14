@@ -32,7 +32,7 @@ const handleUserDelete = (evt) => {
 }
 
 const handleGetUsers = () => {
-  fetch(`${BASE_URL}/get-users`).then((result) => {
+  fetch(`${BASE_URL}/get-users`, { credentials: 'include' }).then((result) => {
     result
       .json()
       .then((data) => {

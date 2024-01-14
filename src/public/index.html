@@ -7,18 +7,40 @@
     <title>Learn</title>
     <link rel="stylesheet" src="./styles.css" />
   </head>
+
   <body>
-    <div id="root">
-      <h1>Войти</h1>
+    <div id="main">
+      <div id="auth" class="hidden">
+        <nav>
+          <a href="/register.html">Регистрация</a>
+          <a href="/recovery.html">Сбросить пароль</a>
+          <a href="/users.html">Пользователи</a>
+        </nav>
 
-      <form id="login">
-        <input type="text" name="username" placeholder="Логин" required />
-        <input type="password" name="password" placeholder="Пароль" required />
-        <button>Отправить</button>
-      </form>
+        <h1>Войти</h1>
 
-      <p><a href="/register.html">Регистрация</a></p>
-      <p><a href="/recovery.html">Сбросить пароль</a></p>
+        <form id="login">
+          <input type="text" name="username" placeholder="Логин" required />
+          <input
+            type="password"
+            name="password"
+            placeholder="Пароль"
+            required
+          />
+          <button>Отправить</button>
+        </form>
+      </div>
+
+      <div id="not-auth" class="hidden">
+        <nav>
+          <a href="/users.html">Пользователи</a>
+          <button id="logout">Выйти</button>
+        </nav>
+
+        <h1>Пользователь</h1>
+
+        <div id="user"></div>
+      </div>
 
       <div id="error" class="error"></div>
       <div id="success" class="success"></div>

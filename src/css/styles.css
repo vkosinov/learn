@@ -50,3 +50,14 @@ td {
 h1 {
   text-align: center;
 }
+
+nav {
+  background-color: gainsboro;
+  display: flex;
+  column-gap: 20px;
+  padding: 10px;
+}
+
+.hidden {
+  display: none;
+}

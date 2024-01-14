@@ -1,4 +1,5 @@
 import BASE_URL from './constants'
+import handleError from './handle-error'
 
 const logoutButton = document.getElementById('logout')
 

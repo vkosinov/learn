@@ -3,6 +3,10 @@ import handleError from './handle-error'
 import handleSuccess from './handle-success'
 
 const loginForm = document.getElementById('login')
+const main = document.getElementById('main')
+const userBlock = document.getElementById('user')
+const authBlock = document.getElementById('auth')
+const noAuthBlock = document.getElementById('not-auth')
 
 if (loginForm) {
   const handleSubmit = (evt) => {
@@ -30,11 +34,7 @@ if (loginForm) {
             handleError(res)
           } else {
             handleError()
-            handleSuccess(res)
-
-            setTimeout(() => {
-              location.assign('/users.html')
-            }, 1000)
+            handleGetUser()
           }
         })
 
@@ -46,4 +46,43 @@ if (loginForm) {
   }
 
   loginForm.addEventListener('submit', handleSubmit)
+}
+
+const handleGetUser = () => {
+  fetch(`${BASE_URL}/get-user`, { credentials: 'include' }).then((result) => {
+    result
+      .json()
+      .then((data) => {
+        if (result.ok) {
+          renderUser(data.user)
+        } else {
+          noAuthBlock.classList.add('hidden')
+          authBlock.classList.remove('hidden')
+        }
+      })
+      .catch((err) => handleError(err))
+  })
+}
+
+if (main) {
+  document.addEventListener('DOMContentLoaded', handleGetUser)
+}
+
+const renderUser = (user) => {
+  if (!user) {
+    userBlock.innerHTML = ``
+    return
+  }
+
+  authBlock.classList.add('hidden')
+  noAuthBlock.classList.remove('hidden')
+
+  if (userBlock) {
+    userBlock.innerHTML = `
+    <p><b>username:</b> ${user.username}</p>
+    <p><b>id:</b> ${user.id}</p>
+    <p><b>email:</b> ${user.email ?? '-'}</p>
+    <p><b>role:</b> ${user.role}</p>
+    `
+  }
 }
