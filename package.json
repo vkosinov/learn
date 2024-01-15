@@ -7,8 +7,7 @@
     "js:lint": "eslint src/js/*.js",
     "js:fix": "eslint --fix src/js/*.js",
     "playwright": "node src/js/playwright/demo.js",
-    "server": "node src/js/authentication/backend/server.js",
-    "dev:server": "nodemon src/js/authentication/backend/server.js"
+    "dev:server:cookie": "nodemon src/js/authentication/cookie/backend/server.js"
   },
   "author": "",
   "license": "ISC",

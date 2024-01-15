@@ -1,2 +1,2 @@
-import './authentication/frontend/index'
+import './authentication/cookie/frontend'
 import '../css/styles.css'
