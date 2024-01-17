@@ -14,18 +14,20 @@ if (registerForm) {
     const password = formData.get('password')
     const email = formData.get('email')
 
-    const data = { username, password, email }
+    const params = { username, password, email }
 
     instance
-      .post('register', data)
-      .then((response) => {
+      .post('register', params)
+      .then(({ data }) => {
         handleError()
-        handleSuccess(response)
+        handleSuccess(data)
         registerForm.reset()
 
-        setTimeout(() => {
-          location.assign('/')
-        }, 1000)
+        localStorage.setItem('token', data.token)
+
+        // setTimeout(() => {
+        //   location.assign('/')
+        // }, 1000)
       })
       .catch((err) => handleError(err))
   }
