@@ -25,9 +25,9 @@ if (registerForm) {
 
         localStorage.setItem('token', data.token)
 
-        // setTimeout(() => {
-        //   location.assign('/')
-        // }, 1000)
+        setTimeout(() => {
+          location.assign('/')
+        }, 1000)
       })
       .catch((err) => handleError(err))
   }

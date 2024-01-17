@@ -30,7 +30,9 @@ exports.getUser = async (req, res) => {
 
         return res.status(200).json({ user: container })
       } catch (error) {
-        res.status(401).json({ message: 'Unauthorized', error: error.message })
+        return res
+          .status(401)
+          .json({ message: 'Unauthorized', error: error.message })
       }
     })
   } else {
