@@ -63,7 +63,7 @@ nav {
 }
 
 .wrap {
-  height: 80vh;
+  max-height: 80vh;
   overflow: hidden;
   overflow-y: auto;
 }

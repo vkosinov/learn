@@ -2,9 +2,10 @@ const jwt = require('jsonwebtoken')
 const User = require('../../../shared/models/user')
 
 const { JWT_SECRET } = require('../../../shared/constants')
+const { getToken } = require('./utils')
 
 exports.getUser = async (req, res) => {
-  const token = req.headers.authorization.split(' ')[1]
+  const token = getToken(req)
 
   if (token) {
     jwt.verify(token, JWT_SECRET, async (err, decodedToken) => {
