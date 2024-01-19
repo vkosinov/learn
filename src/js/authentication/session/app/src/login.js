@@ -23,10 +23,6 @@ if (loginForm) {
       .then(({ data }) => {
         handleError()
 
-        if (data.token) {
-          localStorage.setItem('token', data.token)
-        }
-
         handleGetUser()
         loginForm.reset()
       })
