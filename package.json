@@ -9,7 +9,8 @@
     "playwright": "node src/js/playwright/demo.js",
     "dev:server:cookie": "nodemon src/js/authentication/cookie/backend/server.js",
     "dev:server:header": "nodemon src/js/authentication/header/api/server.js",
-    "server": "nodemon src/js/authentication/session/api/server.js"
+    "server": "nodemon src/js/authentication/session/api/server.js",
+    "server:xss": "nodemon src/js/authentication/xss/api/server.js"
   },
   "author": "",
   "license": "ISC",
