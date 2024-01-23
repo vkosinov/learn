@@ -22,7 +22,7 @@ exports.adminAuth = (req, res, next) => {
   }
 }
 
-exports.userAuth = (req, res, next) => {
+exports.isAuth = (req, res, next) => {
   const token = req.cookies.jwt
 
   if (token) {
@@ -30,9 +30,9 @@ exports.userAuth = (req, res, next) => {
       if (err) {
         return res.status(401).json({ message: 'Not authorized' })
       }
-      if (decodedToken.role !== 'basic') {
-        return res.status(401).json({ message: 'Not authorized' })
-      }
+
+      res.locals.userId = decodedToken.id
+
       next()
     })
   } else {

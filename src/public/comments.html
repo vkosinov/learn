@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Learn</title>
+    <link rel="stylesheet" src="./styles.css" />
+  </head>
+
+  <body>
+    <div>
+      <div>
+        <nav>
+          <a href="/">Главная</a>
+          <a href="/users.html">Пользователи</a>
+          <button id="logout">Выйти</button>
+        </nav>
+
+        <h1>Комментарии</h1>
+
+        <div id="comments"></div>
+
+        <hr />
+
+        <form id="comment-form">
+          <textarea
+            type="text"
+            name="content"
+            placeholder="Введите комментарии"
+            required
+          ></textarea>
+
+          <button>Отправить</button>
+        </form>
+      </div>
+
+      <div id="error" class="error"></div>
+      <div id="success" class="success"></div>
+    </div>
+  </body>
+</html>

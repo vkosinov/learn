@@ -38,6 +38,11 @@ module.exports = {
       filename: 'recovery.html',
       favicon: './src/public/favicon.ico',
     }),
+    new HtmlWebpackPlugin({
+      template: './src/public/comments.html',
+      filename: 'comments.html',
+      favicon: './src/public/favicon.ico',
+    }),
   ],
 
   module: {
