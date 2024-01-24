@@ -1,4 +1,5 @@
 import BASE_URL from './constants'
+import { escapeHTML } from './escape'
 import handleError from './handle-error'
 import handleSuccess from './handle-success'
 
@@ -77,7 +78,7 @@ const renderComments = (comments) => {
       commentsBlock.innerHTML += `
   <div>
     <p><b>Дата:</b> ${new Date(comment.createdAt).toLocaleDateString()}</p>
-    <p><b>Контент:</b> ${comment.content}</p>
+    <p><b>Контент:</b> ${escapeHTML(comment.content)}</p>
     <p><b>id:</b> ${comment.id}</p>
   </div><hr />`
     })

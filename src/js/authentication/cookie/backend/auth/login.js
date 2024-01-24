@@ -29,6 +29,7 @@ exports.login = async (req, res) => {
         res.cookie('jwt', token, {
           httpOnly: true,
           maxAge: MAX_AGE * 1000,
+          sameSite: 'strict',
         })
 
         res.status(201).json({

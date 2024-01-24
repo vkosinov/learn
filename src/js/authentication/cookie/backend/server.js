@@ -14,6 +14,11 @@ app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 app.use(cookieParser())
 
+app.use((req, res, next) => {
+  res.setHeader('Content-Security-Policy', "default-src 'self'")
+  next()
+})
+
 app.use('/api/auth', require('./route'))
 
 const PORT = 5000
