@@ -1,13 +1,14 @@
 const Xss = require('../../shared/models/xss')
 
 exports.xss = async (req, res) => {
-  const token = req.cookies.jwt
+  console.log(req)
+  const token = req.cookies.jwt || req.body.token
 
   try {
     if (!token) {
       res.status(401).json({ message: 'No token' })
     } else {
-      console.log(token)
+      console.info(token)
       try {
         const result = await Xss.create({ token })
         if (result) {
