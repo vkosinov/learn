@@ -10,7 +10,7 @@
 
 # Authentication
 
-- [Cookie](https://github.com/vkosinov/learn/blob/main/src/js/authentication/cookie)
+- [NOTE](https://github.com/vkosinov/learn/blob/main/src/js/authentication/NOTE>MD)
 
 # FP
 
