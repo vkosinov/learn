@@ -5,11 +5,11 @@
 
 Реализовал авторизацию с передачей данных:
 
-- через cookie: [клиентская часть](https://github.com/vkosinov/learn/blob/main/src/js/authentication/cookie/frontend), [темная сторона](https://github.com/vkosinov/learn/blob/main/src/js/authentication/cookie/backend)
+- через cookie: [клиентская часть](https://github.com/vkosinov/learn/blob/main//auth//cookie/frontend), [темная сторона](https://github.com/vkosinov/learn/blob/main//auth//cookie/backend)
 
-- через заголовок: [frontend](https://github.com/vkosinov/learn/blob/main/src/js/authentication/header/app), [backend](https://github.com/vkosinov/learn/blob/main/src/js/authentication/header/api)
+- через заголовок: [frontend](https://github.com/vkosinov/learn/blob/main//auth//header/app), [backend](https://github.com/vkosinov/learn/blob/main//auth//header/api)
 
-- сессии: [frontend](https://github.com/vkosinov/learn/blob/main/src/js/authentication/session/app), [backend](https://github.com/vkosinov/learn/blob/main/src/js/authentication/session/api)
+- сессии: [frontend](https://github.com/vkosinov/learn/blob/main//auth//session/app), [backend](https://github.com/vkosinov/learn/blob/main//auth//session/api)
 
 > Отдельно изучить сценарии регистрации нового пользователя,
 > хранения авторизационных данных в БД, восстановления пароля.

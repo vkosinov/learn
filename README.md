@@ -10,7 +10,7 @@
 
 # Authentication
 
-- [NOTE](https://github.com/vkosinov/learn/blob/main/src/js/authentication/NOTE>MD)
+- [NOTE](https://github.com/vkosinov/learn/blob/main/auth/NOTE>MD)
 
 # FP
 
