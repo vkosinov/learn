@@ -1,5 +1,5 @@
-import BASE_URL from './constants'
-import handleError from './handle-error'
+import BASE_URL from './utils/constants'
+import handleError from './utils/handle-error'
 
 const users = document.getElementById('users')
 

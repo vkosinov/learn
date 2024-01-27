@@ -10,7 +10,19 @@ app.use(express.static(`${__dirname}/public`))
 
 // index page
 app.get('/', (req, res) => {
-  res.render('pages/index')
+  res.render('pages/login')
+})
+
+app.get('/user', (req, res) => {
+  res.render('pages/user')
+})
+
+app.get('/recovery', (req, res) => {
+  res.render('pages/recovery')
+})
+
+app.get('/reset', (req, res) => {
+  res.render('pages/reset')
 })
 
 app.listen(8080)

@@ -1,15 +1,12 @@
-import BASE_URL from './constants'
-import handleError from './handle-error'
+import { axiosInstance } from '../utils/axios-instance'
+import { handleError } from '../utils/handle-error'
 
 const logoutButton = document.getElementById('logout')
 
 if (logoutButton) {
   const handleLogout = () => {
-    fetch(`${BASE_URL}/logout`, {
-      method: 'POST',
-      credentials: 'include',
-      mode: 'cors',
-    })
+    axiosInstance
+      .post('logout')
       .then(location.assign('/'))
       .catch((err) => {
         handleError(err)

@@ -24,8 +24,8 @@ router.route('/reset').post(reset)
 router.route('/update').put(adminAuth, update)
 router.route('/delete-user').delete(adminAuth, deleteUser)
 
-router.route('/get-users').get(getUsers)
-router.route('/get-user').get(getUser)
+router.route('/users').get(getUsers)
+router.route('/user').get(getUser)
 
 router.route('/add-comment').post(isAuth, addComment)
 router.route('/get-comments').get(getComments)

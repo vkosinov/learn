@@ -19,7 +19,7 @@ app.use((req, res, next) => {
   next()
 })
 
-app.use('/api/auth', require('./route'))
+app.use('/api', require('./route'))
 
 const PORT = 5000
 
