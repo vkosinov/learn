@@ -1,6 +1,5 @@
 import BASE_URL from './constants'
 import handleError from './handle-error'
-import handleSuccess from './handle-success'
 
 const loginForm = document.getElementById('login')
 const main = document.getElementById('main')

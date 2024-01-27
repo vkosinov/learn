@@ -8,6 +8,7 @@
     "js:fix": "eslint --fix src/js/*.js",
     "playwright": "node src/js/playwright/demo.js",
     "dev:server:cookie": "nodemon auth/cookie/backend/server.js",
+    "frontend:cookie": "nodemon auth/cookie/frontend/server.js",
     "dev:server:header": "nodemon auth/header/api/server.js",
     "dev:server:session": "nodemon auth/session/api/server.js",
     "server:xss": "nodemon auth/xss/api/server.js"
@@ -45,6 +46,7 @@
     "bcryptjs": "^2.4.3",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
+    "ejs": "^3.1.9",
     "express": "^4.18.2",
     "express-session": "^1.17.3",
     "jsonwebtoken": "^9.0.2",
