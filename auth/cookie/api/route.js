@@ -1,30 +1,35 @@
 const express = require('express')
 
-const { adminAuth, isAuth } = require('./middleware')
+const { isAdminAuth } = require('./middleware/is-admin-auth')
+const { isAuth } = require('./middleware/is-auth')
 
 const router = express.Router()
-const { register } = require('./auth/register')
+
 const { login } = require('./auth/login')
-const { update } = require('./auth/update')
-const { deleteUser } = require('./auth/delete-user')
-const { getUsers } = require('./auth/get-users')
 const { logout } = require('./auth/logout')
-const { recovery } = require('./auth/recovery')
-const { reset } = require('./auth/reset')
-const { getUser } = require('./auth/get-user')
+
+const { register } = require('./user/register')
+const { update } = require('./user/update')
+const { deleteUser } = require('./user/delete-user')
+const { getUsers } = require('./user/get-users')
+const { recovery } = require('./user/recovery')
+const { reset } = require('./user/reset')
+const { getUser } = require('./user/get-user')
+
 const { addComment } = require('./comments/add-comment')
 const { getComments } = require('./comments/get-comments')
 
-router.route('/register').post(register)
 router.route('/login').post(login)
 router.route('/logout').post(logout)
+
+router.route('/register').post(register)
 router.route('/recovery').post(recovery)
 router.route('/reset').post(reset)
 
-router.route('/update').put(adminAuth, update)
-router.route('/delete-user').delete(adminAuth, deleteUser)
+router.route('/update').put(isAdminAuth, update)
+router.route('/delete-user').delete(isAdminAuth, deleteUser)
 
-router.route('/users').get(getUsers)
+router.route('/users').get(isAdminAuth, getUsers)
 router.route('/user').get(getUser)
 
 router.route('/add-comment').post(isAuth, addComment)

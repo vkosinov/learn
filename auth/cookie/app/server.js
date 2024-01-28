@@ -25,5 +25,9 @@ app.get('/reset', (req, res) => {
   res.render('pages/reset')
 })
 
+app.get('/users', (req, res) => {
+  res.render('pages/users')
+})
+
 app.listen(8080)
 console.log('Server is listening on port 8080')

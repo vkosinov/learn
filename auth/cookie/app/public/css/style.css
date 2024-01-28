@@ -31,3 +31,9 @@
   bottom: 16px;
   right: 16px;
 }
+
+.table-wrap {
+  height: 50vh;
+  overflow: hidden;
+  overflow-y: auto;
+}

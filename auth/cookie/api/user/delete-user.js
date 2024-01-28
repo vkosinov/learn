@@ -6,8 +6,12 @@ exports.deleteUser = async (req, res) => {
   try {
     const user = await User.findById(id)
 
-    await User.deleteOne({ _id: id })
-    res.status(201).json({ message: 'User successfully deleted', user })
+    if (user) {
+      await User.deleteOne({ _id: id })
+      res.status(201).json({ message: 'Пользователь успешно удален', user })
+    } else {
+      res.status(400).json({ message: 'Пользователь не найден' })
+    }
   } catch (error) {
     res.status(400).json({ message: 'An error occurred', error: error.message })
   }

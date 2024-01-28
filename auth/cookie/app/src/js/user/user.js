@@ -5,13 +5,13 @@ const userBlock = document.getElementById('user')
 const logout = document.getElementById('logout')
 
 const handleGetUser = () => {
-  if (location.pathname === '/') {
+  if (
+    location.pathname === '/' ||
+    location.pathname === '/user' ||
+    location.pathname === '/users'
+  ) {
     axiosInstance('user')
       .then(({ data }) => {
-        if (location.pathname !== '/user') {
-          location.replace('/user')
-        }
-
         if (logout) {
           logout.classList.remove('hidden')
         }

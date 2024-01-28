@@ -28,9 +28,7 @@ if (resetForm) {
 
         resetForm.reset()
       })
-      .catch(({ response: { data } }) => {
-        handleError(data)
-      })
+      .catch(handleError)
   }
 
   resetForm.addEventListener('submit', handleSubmit)

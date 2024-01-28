@@ -11,7 +11,7 @@ exports.getUsers = async (req, res) => {
         container.email = user.email
         return container
       })
-      res.status(200).json({ user: userFunction })
+      res.status(200).json({ users: userFunction })
     })
     .catch((err) =>
       res.status(401).json({ message: 'Not successful', error: err.message })
