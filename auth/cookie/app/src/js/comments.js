@@ -1,7 +1,6 @@
-import BASE_URL from './constants'
-import { escapeHTML } from './escape'
-import handleError from './handle-error'
-import handleSuccess from './handle-success'
+import { handleError } from './utils/handle-error'
+import { handleSuccess } from './utils/handle-success'
+import { axiosInstance } from './utils/axios-instance'
 
 const commentsBlock = document.getElementById('comments')
 const commentForm = document.getElementById('comment-form')
@@ -14,27 +13,11 @@ if (commentForm) {
 
     const content = formData.get('content')
 
-    const data = JSON.stringify({ content })
-
-    fetch(`${BASE_URL}/add-comment`, {
-      method: 'POST',
-      mode: 'cors',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: data,
-      credentials: 'include',
-    })
-      .then((response) => {
-        response.json().then((res) => {
-          if (!response.ok) {
-            handleError(res)
-          } else {
-            handleError()
-            handleSuccess(res)
-            renderComments([res.comment])
-          }
-        })
+    axiosInstance
+      .post('add-comment', { content })
+      .then(({ data }) => {
+        handleSuccess(data)
+        renderComments([data.comment])
 
         commentForm.reset()
       })
@@ -47,20 +30,11 @@ if (commentForm) {
 }
 
 const handleGetComments = () => {
-  fetch(`${BASE_URL}/get-comments`, { credentials: 'include' }).then(
-    (result) => {
-      result
-        .json()
-        .then((data) => {
-          if (result.ok) {
-            renderComments(data.comments)
-          } else {
-            handleError(data)
-          }
-        })
-        .catch((err) => handleError(err))
-    }
-  )
+  axiosInstance('get-comments')
+    .then(({ data }) => {
+      renderComments(data.comments)
+    })
+    .catch((err) => handleError(err))
 }
 
 if (commentsBlock) {
@@ -76,11 +50,21 @@ const renderComments = (comments) => {
   if (commentsBlock) {
     comments.forEach((comment) => {
       commentsBlock.innerHTML += `
-  <div>
-    <p><b>Дата:</b> ${new Date(comment.createdAt).toLocaleDateString()}</p>
-    <p><b>Контент:</b> ${escapeHTML(comment.content)}</p>
-    <p><b>id:</b> ${comment.id}</p>
-  </div><hr />`
+  <div class="card mb-4">
+      <div class="card card-header">
+        <div class="row">
+          <div class="col">
+            Дата:</b> ${new Date(comment.createdAt).toLocaleDateString()}
+          </div>
+
+          <div class="col">id:</b> ${comment.id}</div>
+        </div>
+      </div>
+
+      <div class="card-body">
+      ${comment.content}
+      </div>
+  </div>`
     })
   }
 }

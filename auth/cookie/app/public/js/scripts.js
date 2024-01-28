@@ -10,13 +10,23 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./app/src/js/comments.js":
+/*!********************************!*\
+  !*** ./app/src/js/comments.js ***!
+  \********************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _utils_handle_error__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils/handle-error */ \"./app/src/js/utils/handle-error.js\");\n/* harmony import */ var _utils_handle_success__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils/handle-success */ \"./app/src/js/utils/handle-success.js\");\n/* harmony import */ var _utils_axios_instance__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./utils/axios-instance */ \"./app/src/js/utils/axios-instance.js\");\n\n\n\nconst commentsBlock = document.getElementById('comments');\nconst commentForm = document.getElementById('comment-form');\nif (commentForm) {\n  const handleSubmit = evt => {\n    evt.preventDefault();\n    const formData = new FormData(commentForm);\n    const content = formData.get('content');\n    _utils_axios_instance__WEBPACK_IMPORTED_MODULE_2__.axiosInstance.post('add-comment', {\n      content\n    }).then(({\n      data\n    }) => {\n      (0,_utils_handle_success__WEBPACK_IMPORTED_MODULE_1__.handleSuccess)(data);\n      renderComments([data.comment]);\n      commentForm.reset();\n    }).catch(err => {\n      (0,_utils_handle_error__WEBPACK_IMPORTED_MODULE_0__.handleError)(err);\n    });\n  };\n  commentForm.addEventListener('submit', handleSubmit);\n}\nconst handleGetComments = () => {\n  (0,_utils_axios_instance__WEBPACK_IMPORTED_MODULE_2__.axiosInstance)('get-comments').then(({\n    data\n  }) => {\n    renderComments(data.comments);\n  }).catch(err => (0,_utils_handle_error__WEBPACK_IMPORTED_MODULE_0__.handleError)(err));\n};\nif (commentsBlock) {\n  document.addEventListener('DOMContentLoaded', handleGetComments);\n}\nconst renderComments = comments => {\n  if (!comments) {\n    commentsBlock.innerHTML = ``;\n    return;\n  }\n  if (commentsBlock) {\n    comments.forEach(comment => {\n      commentsBlock.innerHTML += `\n  <div class=\"card mb-4\">\n      <div class=\"card card-header\">\n        <div class=\"row\">\n          <div class=\"col\">\n            Дата:</b> ${new Date(comment.createdAt).toLocaleDateString()}\n          </div>\n\n          <div class=\"col\">id:</b> ${comment.id}</div>\n        </div>\n      </div>\n\n      <div class=\"card-body\">\n      ${comment.content}\n      </div>\n  </div>`;\n    });\n  }\n};\n\n//# sourceURL=webpack://cookie/./app/src/js/comments.js?");
+
+/***/ }),
+
 /***/ "./app/src/js/index.js":
 /*!*****************************!*\
   !*** ./app/src/js/index.js ***!
   \*****************************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _user__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./user */ \"./app/src/js/user/index.js\");\n\n\n//# sourceURL=webpack://cookie/./app/src/js/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _user__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./user */ \"./app/src/js/user/index.js\");\n/* harmony import */ var _comments__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./comments */ \"./app/src/js/comments.js\");\n\n\n\n//# sourceURL=webpack://cookie/./app/src/js/index.js?");
 
 /***/ }),
 
@@ -36,7 +46,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \**********************************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _login__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./login */ \"./app/src/js/user/login.js\");\n/* harmony import */ var _logout__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./logout */ \"./app/src/js/user/logout.js\");\n/* harmony import */ var _user__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./user */ \"./app/src/js/user/user.js\");\n/* harmony import */ var _users__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./users */ \"./app/src/js/user/users.js\");\n/* harmony import */ var _recovery__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./recovery */ \"./app/src/js/user/recovery.js\");\n/* harmony import */ var _reset__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./reset */ \"./app/src/js/user/reset.js\");\n\n\n\n\n\n\n\n//# sourceURL=webpack://cookie/./app/src/js/user/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _login__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./login */ \"./app/src/js/user/login.js\");\n/* harmony import */ var _logout__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./logout */ \"./app/src/js/user/logout.js\");\n/* harmony import */ var _user__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./user */ \"./app/src/js/user/user.js\");\n/* harmony import */ var _users__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./users */ \"./app/src/js/user/users.js\");\n/* harmony import */ var _recovery__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./recovery */ \"./app/src/js/user/recovery.js\");\n/* harmony import */ var _reset__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./reset */ \"./app/src/js/user/reset.js\");\n/* harmony import */ var _registration__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./registration */ \"./app/src/js/user/registration.js\");\n\n\n\n\n\n\n\n\n//# sourceURL=webpack://cookie/./app/src/js/user/index.js?");
 
 /***/ }),
 
@@ -67,6 +77,16 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _uti
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _utils_handle_error__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/handle-error */ \"./app/src/js/utils/handle-error.js\");\n/* harmony import */ var _utils_handle_success__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/handle-success */ \"./app/src/js/utils/handle-success.js\");\n/* harmony import */ var _utils_axios_instance__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../utils/axios-instance */ \"./app/src/js/utils/axios-instance.js\");\n\n\n\nconst recoveryForm = document.getElementById('recovery');\nif (recoveryForm) {\n  const handleSubmit = evt => {\n    evt.preventDefault();\n    const formData = new FormData(recoveryForm);\n    const email = formData.get('email');\n    const params = {\n      email\n    };\n    _utils_axios_instance__WEBPACK_IMPORTED_MODULE_2__.axiosInstance.post('recovery', params).then(({\n      data\n    }) => {\n      (0,_utils_handle_success__WEBPACK_IMPORTED_MODULE_1__.handleSuccess)({\n        message: `\n          <p>\n            Ссылка на сброс пароля:\n            <a href=\"/reset?id=${data.id}&token=${data.token}\">Изменить пароль</a>\n          </p>`\n      });\n      recoveryForm.reset();\n    }).catch(err => {\n      (0,_utils_handle_error__WEBPACK_IMPORTED_MODULE_0__.handleError)(err);\n    });\n  };\n  recoveryForm.addEventListener('submit', handleSubmit);\n}\n\n//# sourceURL=webpack://cookie/./app/src/js/user/recovery.js?");
+
+/***/ }),
+
+/***/ "./app/src/js/user/registration.js":
+/*!*****************************************!*\
+  !*** ./app/src/js/user/registration.js ***!
+  \*****************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _utils_handle_error__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/handle-error */ \"./app/src/js/utils/handle-error.js\");\n/* harmony import */ var _utils_handle_success__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/handle-success */ \"./app/src/js/utils/handle-success.js\");\n/* harmony import */ var _utils_axios_instance__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../utils/axios-instance */ \"./app/src/js/utils/axios-instance.js\");\n\n\n\nconst registerForm = document.getElementById('register');\nif (registerForm) {\n  const handleSubmit = evt => {\n    evt.preventDefault();\n    const formData = new FormData(registerForm);\n    const username = formData.get('username');\n    const password = formData.get('password');\n    const email = formData.get('email');\n    const params = {\n      username,\n      password,\n      email\n    };\n    _utils_axios_instance__WEBPACK_IMPORTED_MODULE_2__.axiosInstance.post('register', params).then(({\n      data\n    }) => {\n      (0,_utils_handle_success__WEBPACK_IMPORTED_MODULE_1__.handleSuccess)(data);\n      registerForm.reset();\n      setTimeout(() => {\n        location.assign('/');\n      }, 1000);\n    }).catch(err => (0,_utils_handle_error__WEBPACK_IMPORTED_MODULE_0__.handleError)(err));\n  };\n  registerForm.addEventListener('submit', handleSubmit);\n}\n\n//# sourceURL=webpack://cookie/./app/src/js/user/registration.js?");
 
 /***/ }),
 
