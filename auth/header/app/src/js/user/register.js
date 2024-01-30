@@ -1,6 +1,6 @@
-import handleError from './utils/handle-error'
-import handleSuccess from './utils/handle-success'
-import instance from './utils/instance'
+import handleError from '../utils/handle-error'
+import handleSuccess from '../utils/handle-success'
+import instance from '../utils/instance'
 
 const registerForm = document.getElementById('register')
 

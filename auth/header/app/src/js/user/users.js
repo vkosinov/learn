@@ -1,5 +1,5 @@
-import handleError from './utils/handle-error'
-import instance from './utils/instance'
+import { handleError } from '../utils/handle-error'
+import instance from '../utils/instance'
 
 const users = document.getElementById('users')
 

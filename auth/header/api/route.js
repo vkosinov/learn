@@ -15,7 +15,7 @@ const { isAuth } = require('./middleware/is-auth')
 router.route('/register').post(register)
 router.route('/login').post(login)
 
-router.route('/get-user').get(getUser)
+router.route('/user').get(getUser)
 router.route('/get-users').get(adminAuth, getUsers)
 
 router.route('/delete-user').delete(adminAuth, deleteUser)
