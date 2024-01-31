@@ -1,5 +1,5 @@
 import { axiosInstance } from '../utils/axios-instance'
-import { handleError } from '../utils/handle-error'
+import { handleError } from 'utils/handle-error'
 
 const loginForm = document.getElementById('login')
 

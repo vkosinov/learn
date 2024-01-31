@@ -1,6 +1,6 @@
 import { axiosInstance } from '../utils/axios-instance'
-import { handleError } from '../utils/handle-error'
-import { handleSuccess } from '../utils/handle-success'
+import { handleError } from 'utils/handle-error'
+import { handleSuccess } from 'utils/handle-success'
 
 const handleUserDelete = (callback) => (evt) => {
   const { id } = evt.target.dataset

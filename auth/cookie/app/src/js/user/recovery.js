@@ -1,5 +1,5 @@
-import { handleError } from '../utils/handle-error'
-import { handleSuccess } from '../utils/handle-success'
+import { handleError } from 'utils/handle-error'
+import { handleSuccess } from 'utils/handle-success'
 import { axiosInstance } from '../utils/axios-instance'
 
 const recoveryForm = document.getElementById('recovery')

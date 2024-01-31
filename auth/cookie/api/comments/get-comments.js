@@ -1,4 +1,4 @@
-const Comment = require('../../../shared/models/comment')
+const Comment = require('../../../shared/api/models/comment')
 
 exports.getComments = async (req, res) => {
   await Comment.find({})

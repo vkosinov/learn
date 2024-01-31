@@ -1,4 +1,4 @@
-const Comment = require('../../../shared/models/comment')
+const Comment = require('../../../shared/api/models/comment')
 
 exports.addComment = async (req, res) => {
   const { content } = req.body
