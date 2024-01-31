@@ -2,9 +2,8 @@ const express = require('express')
 const cors = require('cors')
 const cookieParser = require('cookie-parser')
 
-const connectDB = require('./db')
+const connectDB = require('../../shared/api/db')
 
-// Connecting DB
 connectDB()
 
 const app = express()
@@ -13,11 +12,6 @@ app.use(cors({ origin: 'http://localhost:8080', credentials: true }))
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 app.use(cookieParser())
-
-app.use((req, res, next) => {
-  res.setHeader('Content-Security-Policy', "default-src 'self'")
-  next()
-})
 
 app.use('/api', require('./route'))
 

@@ -8,16 +8,17 @@ const router = express.Router()
 const { login } = require('./auth/login')
 const { logout } = require('./auth/logout')
 
-const { register } = require('./user/register')
-const { update } = require('./user/update')
-const { deleteUser } = require('./user/delete-user')
-const { getUsers } = require('./user/get-users')
-const { recovery } = require('./user/recovery')
-const { reset } = require('./user/reset')
-const { getUser } = require('./user/get-user')
+const {
+  register,
+  update,
+  deleteUser,
+  getUsers,
+  recovery,
+  reset,
+  getUser,
+} = require('../../shared/api/user/index')
 
-const { addComment } = require('./comments/add-comment')
-const { getComments } = require('./comments/get-comments')
+const { addComment, getComments } = require('../../shared/api/comments/index')
 
 router.route('/login').post(login)
 router.route('/logout').post(logout)
