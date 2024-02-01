@@ -27,6 +27,7 @@ module.exports = {
   resolve: {
     alias: {
       utils: path.resolve(__dirname, '../shared/app/utils'),
+      shared: path.resolve(__dirname, '../shared/app'),
     },
   },
 }

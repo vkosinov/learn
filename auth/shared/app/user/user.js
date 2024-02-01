@@ -14,11 +14,15 @@ export const createGetUser = (axiosInstance) => {
         .then(({ data }) => {
           if (logout) {
             logout.classList.remove('hidden')
+
+            if (location.pathname === '/') {
+              location.assign('/user')
+            }
           }
 
           renderUser(data.user)
         })
-        .catch((err) => handleError(err))
+        .catch((err) => console.error(err.message))
     }
   }
 

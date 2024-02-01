@@ -10,33 +10,13 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./app/src/js/comments.js":
-/*!********************************!*\
-  !*** ./app/src/js/comments.js ***!
-  \********************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var utils_handle_error__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! utils/handle-error */ \"../shared/app/utils/handle-error.js\");\n/* harmony import */ var utils_handle_success__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! utils/handle-success */ \"../shared/app/utils/handle-success.js\");\n/* harmony import */ var _utils_axios_instance__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./utils/axios-instance */ \"./app/src/js/utils/axios-instance.js\");\n\n\n\nconst commentsBlock = document.getElementById('comments');\nconst commentForm = document.getElementById('comment-form');\nif (commentForm) {\n  const handleSubmit = evt => {\n    evt.preventDefault();\n    const formData = new FormData(commentForm);\n    const content = formData.get('content');\n    _utils_axios_instance__WEBPACK_IMPORTED_MODULE_2__.axiosInstance.post('add-comment', {\n      content\n    }).then(({\n      data\n    }) => {\n      (0,utils_handle_success__WEBPACK_IMPORTED_MODULE_1__.handleSuccess)(data);\n      renderComments([data.comment]);\n      commentForm.reset();\n    }).catch(err => {\n      (0,utils_handle_error__WEBPACK_IMPORTED_MODULE_0__.handleError)(err);\n    });\n  };\n  commentForm.addEventListener('submit', handleSubmit);\n}\nconst handleGetComments = () => {\n  (0,_utils_axios_instance__WEBPACK_IMPORTED_MODULE_2__.axiosInstance)('get-comments').then(({\n    data\n  }) => {\n    renderComments(data.comments);\n  }).catch(err => (0,utils_handle_error__WEBPACK_IMPORTED_MODULE_0__.handleError)(err));\n};\nif (commentsBlock) {\n  document.addEventListener('DOMContentLoaded', handleGetComments);\n}\nconst renderComments = comments => {\n  if (!comments) {\n    commentsBlock.innerHTML = ``;\n    return;\n  }\n  if (commentsBlock) {\n    comments.forEach(comment => {\n      commentsBlock.innerHTML += `\n  <div class=\"card mb-4\">\n      <div class=\"card card-header\">\n        <div class=\"row\">\n          <div class=\"col\">\n            Дата:</b> ${new Date(comment.createdAt).toLocaleDateString()}\n          </div>\n\n          <div class=\"col\">id:</b> ${comment.id}</div>\n        </div>\n      </div>\n\n      <div class=\"card-body\">\n      ${comment.content}\n      </div>\n  </div>`;\n    });\n  }\n};\n\n//# sourceURL=webpack://cookie/./app/src/js/comments.js?");
-
-/***/ }),
-
 /***/ "./app/src/js/index.js":
 /*!*****************************!*\
   !*** ./app/src/js/index.js ***!
   \*****************************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _user__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./user */ \"./app/src/js/user/index.js\");\n/* harmony import */ var _comments__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./comments */ \"./app/src/js/comments.js\");\n\n\n\n//# sourceURL=webpack://cookie/./app/src/js/index.js?");
-
-/***/ }),
-
-/***/ "./app/src/js/user/delete.js":
-/*!***********************************!*\
-  !*** ./app/src/js/user/delete.js ***!
-  \***********************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   handleAddEventListenerDelete: function() { return /* binding */ handleAddEventListenerDelete; }\n/* harmony export */ });\n/* harmony import */ var _utils_axios_instance__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/axios-instance */ \"./app/src/js/utils/axios-instance.js\");\n/* harmony import */ var utils_handle_error__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! utils/handle-error */ \"../shared/app/utils/handle-error.js\");\n/* harmony import */ var utils_handle_success__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! utils/handle-success */ \"../shared/app/utils/handle-success.js\");\n\n\n\nconst handleUserDelete = callback => evt => {\n  const {\n    id\n  } = evt.target.dataset;\n  _utils_axios_instance__WEBPACK_IMPORTED_MODULE_0__.axiosInstance.delete('delete-user', {\n    data: {\n      id\n    }\n  }).then(({\n    data\n  }) => {\n    (0,utils_handle_success__WEBPACK_IMPORTED_MODULE_2__.handleSuccess)(data);\n    if (callback) {\n      callback();\n    }\n  }).catch(utils_handle_error__WEBPACK_IMPORTED_MODULE_1__.handleError);\n};\nconst handleAddEventListenerDelete = callback => {\n  const buttons = document.querySelectorAll('[data-delete');\n  if (buttons.length > 0) {\n    buttons.forEach(button => {\n      button.addEventListener('click', handleUserDelete(callback));\n    });\n  }\n};\n\n//# sourceURL=webpack://cookie/./app/src/js/user/delete.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _user__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./user */ \"./app/src/js/user/index.js\");\n/* harmony import */ var _utils_axios_instance__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils/axios-instance */ \"./app/src/js/utils/axios-instance.js\");\n/* harmony import */ var shared_comments__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! shared/comments */ \"../shared/app/comments/index.js\");\n\n\n\n(0,shared_comments__WEBPACK_IMPORTED_MODULE_2__.createAddComment)(_utils_axios_instance__WEBPACK_IMPORTED_MODULE_1__.axiosInstance);\n(0,shared_comments__WEBPACK_IMPORTED_MODULE_2__.createGetComments)(_utils_axios_instance__WEBPACK_IMPORTED_MODULE_1__.axiosInstance);\n\n//# sourceURL=webpack://cookie/./app/src/js/index.js?");
 
 /***/ }),
 
@@ -46,7 +26,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \**********************************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _login__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./login */ \"./app/src/js/user/login.js\");\n/* harmony import */ var _logout__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./logout */ \"./app/src/js/user/logout.js\");\n/* harmony import */ var _user__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./user */ \"./app/src/js/user/user.js\");\n/* harmony import */ var _users__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./users */ \"./app/src/js/user/users.js\");\n/* harmony import */ var _recovery__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./recovery */ \"./app/src/js/user/recovery.js\");\n/* harmony import */ var _reset__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./reset */ \"./app/src/js/user/reset.js\");\n/* harmony import */ var _registration__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./registration */ \"./app/src/js/user/registration.js\");\n\n\n\n\n\n\n\n\n//# sourceURL=webpack://cookie/./app/src/js/user/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _login__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./login */ \"./app/src/js/user/login.js\");\n/* harmony import */ var _logout__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./logout */ \"./app/src/js/user/logout.js\");\n/* harmony import */ var _utils_axios_instance__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../utils/axios-instance */ \"./app/src/js/utils/axios-instance.js\");\n/* harmony import */ var shared_user__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! shared/user */ \"../shared/app/user/index.js\");\n\n\n\n\n(0,shared_user__WEBPACK_IMPORTED_MODULE_3__.createGetUser)(_utils_axios_instance__WEBPACK_IMPORTED_MODULE_2__.axiosInstance);\n(0,shared_user__WEBPACK_IMPORTED_MODULE_3__.createRecoveryPassword)(_utils_axios_instance__WEBPACK_IMPORTED_MODULE_2__.axiosInstance);\n(0,shared_user__WEBPACK_IMPORTED_MODULE_3__.createRegistration)(_utils_axios_instance__WEBPACK_IMPORTED_MODULE_2__.axiosInstance);\n(0,shared_user__WEBPACK_IMPORTED_MODULE_3__.createResetPassword)(_utils_axios_instance__WEBPACK_IMPORTED_MODULE_2__.axiosInstance);\n(0,shared_user__WEBPACK_IMPORTED_MODULE_3__.createGetUsers)(_utils_axios_instance__WEBPACK_IMPORTED_MODULE_2__.axiosInstance);\n\n//# sourceURL=webpack://cookie/./app/src/js/user/index.js?");
 
 /***/ }),
 
@@ -56,7 +36,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _log
   \**********************************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _utils_axios_instance__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/axios-instance */ \"./app/src/js/utils/axios-instance.js\");\n/* harmony import */ var utils_handle_error__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! utils/handle-error */ \"../shared/app/utils/handle-error.js\");\n\n\nconst loginForm = document.getElementById('login');\nif (loginForm) {\n  const handleSubmit = evt => {\n    evt.preventDefault();\n    const formData = new FormData(loginForm);\n    const username = formData.get('username');\n    const password = formData.get('password');\n    const data = {\n      username,\n      password\n    };\n    _utils_axios_instance__WEBPACK_IMPORTED_MODULE_0__.axiosInstance.post('login', data).then(() => {\n      location.replace('/user');\n    }).catch(err => {\n      (0,utils_handle_error__WEBPACK_IMPORTED_MODULE_1__.handleError)(err);\n    });\n  };\n  loginForm.addEventListener('submit', handleSubmit);\n}\n\n//# sourceURL=webpack://cookie/./app/src/js/user/login.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _utils_axios_instance__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/axios-instance */ \"./app/src/js/utils/axios-instance.js\");\n\nconst loginForm = document.getElementById('login');\nif (loginForm) {\n  const handleSubmit = evt => {\n    evt.preventDefault();\n    const formData = new FormData(loginForm);\n    const username = formData.get('username');\n    const password = formData.get('password');\n    const data = {\n      username,\n      password\n    };\n    _utils_axios_instance__WEBPACK_IMPORTED_MODULE_0__.axiosInstance.post('login', data).then(() => {\n      location.replace('/user');\n    }).catch(err => {\n      console.error(err);\n    });\n  };\n  loginForm.addEventListener('submit', handleSubmit);\n}\n\n//# sourceURL=webpack://cookie/./app/src/js/user/login.js?");
 
 /***/ }),
 
@@ -70,56 +50,6 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _uti
 
 /***/ }),
 
-/***/ "./app/src/js/user/recovery.js":
-/*!*************************************!*\
-  !*** ./app/src/js/user/recovery.js ***!
-  \*************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var utils_handle_error__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! utils/handle-error */ \"../shared/app/utils/handle-error.js\");\n/* harmony import */ var utils_handle_success__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! utils/handle-success */ \"../shared/app/utils/handle-success.js\");\n/* harmony import */ var _utils_axios_instance__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../utils/axios-instance */ \"./app/src/js/utils/axios-instance.js\");\n\n\n\nconst recoveryForm = document.getElementById('recovery');\nif (recoveryForm) {\n  const handleSubmit = evt => {\n    evt.preventDefault();\n    const formData = new FormData(recoveryForm);\n    const email = formData.get('email');\n    const params = {\n      email\n    };\n    _utils_axios_instance__WEBPACK_IMPORTED_MODULE_2__.axiosInstance.post('recovery', params).then(({\n      data\n    }) => {\n      (0,utils_handle_success__WEBPACK_IMPORTED_MODULE_1__.handleSuccess)({\n        message: `\n          <p>\n            Ссылка на сброс пароля:\n            <a href=\"/reset?id=${data.id}&token=${data.token}\">Изменить пароль</a>\n          </p>`\n      });\n      recoveryForm.reset();\n    }).catch(err => {\n      (0,utils_handle_error__WEBPACK_IMPORTED_MODULE_0__.handleError)(err);\n    });\n  };\n  recoveryForm.addEventListener('submit', handleSubmit);\n}\n\n//# sourceURL=webpack://cookie/./app/src/js/user/recovery.js?");
-
-/***/ }),
-
-/***/ "./app/src/js/user/registration.js":
-/*!*****************************************!*\
-  !*** ./app/src/js/user/registration.js ***!
-  \*****************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var utils_handle_error__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! utils/handle-error */ \"../shared/app/utils/handle-error.js\");\n/* harmony import */ var utils_handle_success__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! utils/handle-success */ \"../shared/app/utils/handle-success.js\");\n/* harmony import */ var _utils_axios_instance__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../utils/axios-instance */ \"./app/src/js/utils/axios-instance.js\");\n\n\n\nconst registerForm = document.getElementById('register');\nif (registerForm) {\n  const handleSubmit = evt => {\n    evt.preventDefault();\n    const formData = new FormData(registerForm);\n    const username = formData.get('username');\n    const password = formData.get('password');\n    const email = formData.get('email');\n    const params = {\n      username,\n      password,\n      email\n    };\n    _utils_axios_instance__WEBPACK_IMPORTED_MODULE_2__.axiosInstance.post('register', params).then(({\n      data\n    }) => {\n      (0,utils_handle_success__WEBPACK_IMPORTED_MODULE_1__.handleSuccess)(data);\n      registerForm.reset();\n      setTimeout(() => {\n        location.assign('/');\n      }, 1000);\n    }).catch(err => (0,utils_handle_error__WEBPACK_IMPORTED_MODULE_0__.handleError)(err));\n  };\n  registerForm.addEventListener('submit', handleSubmit);\n}\n\n//# sourceURL=webpack://cookie/./app/src/js/user/registration.js?");
-
-/***/ }),
-
-/***/ "./app/src/js/user/reset.js":
-/*!**********************************!*\
-  !*** ./app/src/js/user/reset.js ***!
-  \**********************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var utils_handle_success__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! utils/handle-success */ \"../shared/app/utils/handle-success.js\");\n/* harmony import */ var utils_handle_error__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! utils/handle-error */ \"../shared/app/utils/handle-error.js\");\n/* harmony import */ var _utils_axios_instance__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../utils/axios-instance */ \"./app/src/js/utils/axios-instance.js\");\n\n\n\nconst resetForm = document.getElementById('reset');\nif (resetForm) {\n  const handleSubmit = evt => {\n    evt.preventDefault();\n    const formData = new FormData(resetForm);\n    const password = formData.get('password');\n    const urlParams = new URLSearchParams(window.location.search);\n    const token = urlParams.get('token');\n    const id = urlParams.get('id');\n    const params = {\n      password,\n      token,\n      id\n    };\n    _utils_axios_instance__WEBPACK_IMPORTED_MODULE_2__.axiosInstance.post('reset', params).then(({\n      data\n    }) => {\n      (0,utils_handle_success__WEBPACK_IMPORTED_MODULE_0__.handleSuccess)(data);\n      setTimeout(() => {\n        location.assign('/');\n      }, 1000);\n      resetForm.reset();\n    }).catch(utils_handle_error__WEBPACK_IMPORTED_MODULE_1__.handleError);\n  };\n  resetForm.addEventListener('submit', handleSubmit);\n}\n\n//# sourceURL=webpack://cookie/./app/src/js/user/reset.js?");
-
-/***/ }),
-
-/***/ "./app/src/js/user/user.js":
-/*!*********************************!*\
-  !*** ./app/src/js/user/user.js ***!
-  \*********************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _utils_axios_instance__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/axios-instance */ \"./app/src/js/utils/axios-instance.js\");\n/* harmony import */ var utils_handle_error__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! utils/handle-error */ \"../shared/app/utils/handle-error.js\");\n\n\nconst userBlock = document.getElementById('user');\nconst logout = document.getElementById('logout');\nconst handleGetUser = () => {\n  if (location.pathname === '/' || location.pathname === '/user' || location.pathname === '/users') {\n    (0,_utils_axios_instance__WEBPACK_IMPORTED_MODULE_0__.axiosInstance)('user').then(({\n      data\n    }) => {\n      if (logout) {\n        logout.classList.remove('hidden');\n      }\n      renderUser(data.user);\n    }).catch(err => (0,utils_handle_error__WEBPACK_IMPORTED_MODULE_1__.handleError)(err));\n  }\n};\ndocument.addEventListener('DOMContentLoaded', handleGetUser);\nconst renderUser = user => {\n  if (!user) {\n    userBlock.innerHTML = ``;\n    return;\n  }\n  if (userBlock) {\n    userBlock.innerHTML = `\n    <li class=\"list-group-item\"><b>username:</b> ${user.username}</li>\n    <li class=\"list-group-item\"><b>id:</b> ${user.id}</li>\n    <li class=\"list-group-item\"><b>email:</b> ${user.email ?? '-'}</li>\n    <li class=\"list-group-item\"><b>role:</b> ${user.role}</li>\n    `;\n  }\n};\n\n//# sourceURL=webpack://cookie/./app/src/js/user/user.js?");
-
-/***/ }),
-
-/***/ "./app/src/js/user/users.js":
-/*!**********************************!*\
-  !*** ./app/src/js/user/users.js ***!
-  \**********************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _utils_axios_instance__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/axios-instance */ \"./app/src/js/utils/axios-instance.js\");\n/* harmony import */ var utils_handle_error__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! utils/handle-error */ \"../shared/app/utils/handle-error.js\");\n/* harmony import */ var _delete__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./delete */ \"./app/src/js/user/delete.js\");\n\n\n\nconst users = document.getElementById('users');\nconst createUserTable = data => {\n  let tableBody = ``;\n  data.forEach(user => tableBody += `\n    <tr>\n      <td>${user.username}</td>\n      <td>${user.role}</td>\n      <td>${user.email ?? '-'}</td>\n      <td>\n      <button class='btn btn-danger' data-delete data-id='${user.id}'>\n      Удалить\n      </button>\n      <td>\n    </tr>`);\n  users.innerHTML = `<table class=\"table table-striped\">\n    <thead>\n      <tr>\n        <th scope=\"col\">Логин</th>\n        <th scope=\"col\">Роль</th>\n        <th scope=\"col\">Email</th>\n        <th scope=\"col\">Действия</th>\n      </tr>\n    </thead>\n\n    <tbody>\n    ${tableBody}\n    </tbody>\n  </table>\n  `;\n};\nconst handleGetUsers = () => {\n  (0,_utils_axios_instance__WEBPACK_IMPORTED_MODULE_0__.axiosInstance)('users').then(({\n    data\n  }) => {\n    createUserTable(data.users);\n    (0,_delete__WEBPACK_IMPORTED_MODULE_2__.handleAddEventListenerDelete)(handleGetUsers);\n  }).catch(utils_handle_error__WEBPACK_IMPORTED_MODULE_1__.handleError);\n};\nif (users) {\n  window.addEventListener('load', handleGetUsers);\n}\n\n//# sourceURL=webpack://cookie/./app/src/js/user/users.js?");
-
-/***/ }),
-
 /***/ "./app/src/js/utils/axios-instance.js":
 /*!********************************************!*\
   !*** ./app/src/js/utils/axios-instance.js ***!
@@ -130,13 +60,123 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
 /***/ }),
 
+/***/ "../shared/app/comments/add.js":
+/*!*************************************!*\
+  !*** ../shared/app/comments/add.js ***!
+  \*************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   createAddComment: function() { return /* binding */ createAddComment; }\n/* harmony export */ });\n/* harmony import */ var _utils_handle_error__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/handle-error */ \"../shared/app/utils/handle-error.js\");\n/* harmony import */ var _utils_handle_success__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/handle-success */ \"../shared/app/utils/handle-success.js\");\n/* harmony import */ var _render_comments__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./render-comments */ \"../shared/app/comments/render-comments.js\");\n\n\n\nconst createAddComment = axiosInstance => {\n  const commentForm = document.getElementById('comment-form');\n  if (commentForm) {\n    const handleSubmit = evt => {\n      evt.preventDefault();\n      const formData = new FormData(commentForm);\n      const content = formData.get('content');\n      axiosInstance.post('add-comment', {\n        content\n      }).then(({\n        data\n      }) => {\n        (0,_utils_handle_success__WEBPACK_IMPORTED_MODULE_1__.handleSuccess)(data);\n        (0,_render_comments__WEBPACK_IMPORTED_MODULE_2__.renderComments)([data.comment]);\n        commentForm.reset();\n      }).catch(err => {\n        (0,_utils_handle_error__WEBPACK_IMPORTED_MODULE_0__.handleError)(err);\n      });\n    };\n    commentForm.addEventListener('submit', handleSubmit);\n  }\n};\n\n//# sourceURL=webpack://cookie/../shared/app/comments/add.js?");
+
+/***/ }),
+
+/***/ "../shared/app/comments/get.js":
+/*!*************************************!*\
+  !*** ../shared/app/comments/get.js ***!
+  \*************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   createGetComments: function() { return /* binding */ createGetComments; }\n/* harmony export */ });\n/* harmony import */ var _utils_handle_error__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/handle-error */ \"../shared/app/utils/handle-error.js\");\n/* harmony import */ var _render_comments__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./render-comments */ \"../shared/app/comments/render-comments.js\");\n\n\nconst createGetComments = axiosInstance => {\n  const commentsBlock = document.getElementById('comments');\n  const handleGetComments = () => {\n    axiosInstance('get-comments').then(({\n      data\n    }) => {\n      (0,_render_comments__WEBPACK_IMPORTED_MODULE_1__.renderComments)(data.comments);\n    }).catch(err => (0,_utils_handle_error__WEBPACK_IMPORTED_MODULE_0__.handleError)(err));\n  };\n  if (commentsBlock) {\n    document.addEventListener('DOMContentLoaded', handleGetComments);\n  }\n};\n\n//# sourceURL=webpack://cookie/../shared/app/comments/get.js?");
+
+/***/ }),
+
+/***/ "../shared/app/comments/index.js":
+/*!***************************************!*\
+  !*** ../shared/app/comments/index.js ***!
+  \***************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   createAddComment: function() { return /* reexport safe */ _add__WEBPACK_IMPORTED_MODULE_0__.createAddComment; },\n/* harmony export */   createGetComments: function() { return /* reexport safe */ _get__WEBPACK_IMPORTED_MODULE_1__.createGetComments; }\n/* harmony export */ });\n/* harmony import */ var _add__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./add */ \"../shared/app/comments/add.js\");\n/* harmony import */ var _get__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./get */ \"../shared/app/comments/get.js\");\n\n\n\n//# sourceURL=webpack://cookie/../shared/app/comments/index.js?");
+
+/***/ }),
+
+/***/ "../shared/app/comments/render-comments.js":
+/*!*************************************************!*\
+  !*** ../shared/app/comments/render-comments.js ***!
+  \*************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   renderComments: function() { return /* binding */ renderComments; }\n/* harmony export */ });\nconst renderComments = comments => {\n  const commentsBlock = document.getElementById('comments');\n  if (!comments) {\n    commentsBlock.innerHTML = ``;\n    return;\n  }\n  if (commentsBlock) {\n    comments.forEach(comment => {\n      commentsBlock.innerHTML += `\n<div class=\"card mb-4\">\n    <div class=\"card card-header\">\n      <div class=\"row\">\n        <div class=\"col\">\n          Дата:</b> ${new Date(comment.createdAt).toLocaleDateString()}\n        </div>\n\n        <div class=\"col\">id:</b> ${comment.id}</div>\n      </div>\n    </div>\n\n    <div class=\"card-body\">\n    ${comment.content}\n    </div>\n</div>`;\n    });\n  }\n};\n\n//# sourceURL=webpack://cookie/../shared/app/comments/render-comments.js?");
+
+/***/ }),
+
+/***/ "../shared/app/user/delete.js":
+/*!************************************!*\
+  !*** ../shared/app/user/delete.js ***!
+  \************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   createHandleAddEventListenerDelete: function() { return /* binding */ createHandleAddEventListenerDelete; }\n/* harmony export */ });\n/* harmony import */ var _utils_handle_error__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/handle-error */ \"../shared/app/utils/handle-error.js\");\n/* harmony import */ var _utils_handle_success__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/handle-success */ \"../shared/app/utils/handle-success.js\");\n\n\nconst createHandleAddEventListenerDelete = axiosInstance => callback => {\n  const buttons = document.querySelectorAll('[data-delete');\n  if (buttons.length > 0) {\n    buttons.forEach(button => {\n      button.addEventListener('click', handleUserDelete(axiosInstance, callback));\n    });\n  }\n};\nconst handleUserDelete = (axiosInstance, callback) => evt => {\n  const {\n    id\n  } = evt.target.dataset;\n  axiosInstance.delete('delete-user', {\n    data: {\n      id\n    }\n  }).then(({\n    data\n  }) => {\n    (0,_utils_handle_success__WEBPACK_IMPORTED_MODULE_1__.handleSuccess)(data);\n    if (callback) {\n      callback();\n    }\n  }).catch(_utils_handle_error__WEBPACK_IMPORTED_MODULE_0__.handleError);\n};\n\n//# sourceURL=webpack://cookie/../shared/app/user/delete.js?");
+
+/***/ }),
+
+/***/ "../shared/app/user/index.js":
+/*!***********************************!*\
+  !*** ../shared/app/user/index.js ***!
+  \***********************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   createGetUser: function() { return /* reexport safe */ _user__WEBPACK_IMPORTED_MODULE_3__.createGetUser; },\n/* harmony export */   createGetUsers: function() { return /* reexport safe */ _users__WEBPACK_IMPORTED_MODULE_4__.createGetUsers; },\n/* harmony export */   createRecoveryPassword: function() { return /* reexport safe */ _recovery__WEBPACK_IMPORTED_MODULE_0__.createRecoveryPassword; },\n/* harmony export */   createRegistration: function() { return /* reexport safe */ _registration__WEBPACK_IMPORTED_MODULE_1__.createRegistration; },\n/* harmony export */   createResetPassword: function() { return /* reexport safe */ _reset__WEBPACK_IMPORTED_MODULE_2__.createResetPassword; }\n/* harmony export */ });\n/* harmony import */ var _recovery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./recovery */ \"../shared/app/user/recovery.js\");\n/* harmony import */ var _registration__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./registration */ \"../shared/app/user/registration.js\");\n/* harmony import */ var _reset__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./reset */ \"../shared/app/user/reset.js\");\n/* harmony import */ var _user__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./user */ \"../shared/app/user/user.js\");\n/* harmony import */ var _users__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./users */ \"../shared/app/user/users.js\");\n\n\n\n\n\n\n//# sourceURL=webpack://cookie/../shared/app/user/index.js?");
+
+/***/ }),
+
+/***/ "../shared/app/user/recovery.js":
+/*!**************************************!*\
+  !*** ../shared/app/user/recovery.js ***!
+  \**************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   createRecoveryPassword: function() { return /* binding */ createRecoveryPassword; }\n/* harmony export */ });\n/* harmony import */ var _utils_handle_error__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/handle-error */ \"../shared/app/utils/handle-error.js\");\n/* harmony import */ var _utils_handle_success__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/handle-success */ \"../shared/app/utils/handle-success.js\");\n\n\nconst createRecoveryPassword = axiosInstance => {\n  const recoveryForm = document.getElementById('recovery');\n  if (recoveryForm) {\n    const handleSubmit = evt => {\n      evt.preventDefault();\n      const formData = new FormData(recoveryForm);\n      const email = formData.get('email');\n      const params = {\n        email\n      };\n      axiosInstance.post('recovery', params).then(({\n        data\n      }) => {\n        (0,_utils_handle_success__WEBPACK_IMPORTED_MODULE_1__.handleSuccess)({\n          message: `\n          <p>\n            Ссылка на сброс пароля:\n            <a href=\"/reset?id=${data.id}&token=${data.token}\">Изменить пароль</a>\n          </p>`\n        });\n        recoveryForm.reset();\n      }).catch(err => {\n        (0,_utils_handle_error__WEBPACK_IMPORTED_MODULE_0__.handleError)(err);\n      });\n    };\n    recoveryForm.addEventListener('submit', handleSubmit);\n  }\n};\n\n//# sourceURL=webpack://cookie/../shared/app/user/recovery.js?");
+
+/***/ }),
+
+/***/ "../shared/app/user/registration.js":
+/*!******************************************!*\
+  !*** ../shared/app/user/registration.js ***!
+  \******************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   createRegistration: function() { return /* binding */ createRegistration; }\n/* harmony export */ });\n/* harmony import */ var _utils_handle_error__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/handle-error */ \"../shared/app/utils/handle-error.js\");\n/* harmony import */ var _utils_handle_success__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/handle-success */ \"../shared/app/utils/handle-success.js\");\n\n\nconst createRegistration = axiosInstance => {\n  const registerForm = document.getElementById('register');\n  if (registerForm) {\n    const handleSubmit = evt => {\n      evt.preventDefault();\n      const formData = new FormData(registerForm);\n      const username = formData.get('username');\n      const password = formData.get('password');\n      const email = formData.get('email');\n      const params = {\n        username,\n        password,\n        email\n      };\n      axiosInstance.post('register', params).then(({\n        data\n      }) => {\n        (0,_utils_handle_success__WEBPACK_IMPORTED_MODULE_1__.handleSuccess)(data);\n        registerForm.reset();\n        setTimeout(() => {\n          location.assign('/');\n        }, 1000);\n      }).catch(err => (0,_utils_handle_error__WEBPACK_IMPORTED_MODULE_0__.handleError)(err));\n    };\n    registerForm.addEventListener('submit', handleSubmit);\n  }\n};\n\n//# sourceURL=webpack://cookie/../shared/app/user/registration.js?");
+
+/***/ }),
+
+/***/ "../shared/app/user/reset.js":
+/*!***********************************!*\
+  !*** ../shared/app/user/reset.js ***!
+  \***********************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   createResetPassword: function() { return /* binding */ createResetPassword; }\n/* harmony export */ });\n/* harmony import */ var _utils_handle_success__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/handle-success */ \"../shared/app/utils/handle-success.js\");\n/* harmony import */ var _utils_handle_error__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/handle-error */ \"../shared/app/utils/handle-error.js\");\n\n\nconst createResetPassword = axiosInstance => {\n  const resetForm = document.getElementById('reset');\n  if (resetForm) {\n    const handleSubmit = evt => {\n      evt.preventDefault();\n      const formData = new FormData(resetForm);\n      const password = formData.get('password');\n      const urlParams = new URLSearchParams(window.location.search);\n      const token = urlParams.get('token');\n      const id = urlParams.get('id');\n      const params = {\n        password,\n        token,\n        id\n      };\n      axiosInstance.post('reset', params).then(({\n        data\n      }) => {\n        (0,_utils_handle_success__WEBPACK_IMPORTED_MODULE_0__.handleSuccess)(data);\n        setTimeout(() => {\n          location.assign('/');\n        }, 1000);\n        resetForm.reset();\n      }).catch(_utils_handle_error__WEBPACK_IMPORTED_MODULE_1__.handleError);\n    };\n    resetForm.addEventListener('submit', handleSubmit);\n  }\n};\n\n//# sourceURL=webpack://cookie/../shared/app/user/reset.js?");
+
+/***/ }),
+
+/***/ "../shared/app/user/user.js":
+/*!**********************************!*\
+  !*** ../shared/app/user/user.js ***!
+  \**********************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   createGetUser: function() { return /* binding */ createGetUser; }\n/* harmony export */ });\n/* harmony import */ var _utils_handle_error__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/handle-error */ \"../shared/app/utils/handle-error.js\");\n\nconst createGetUser = axiosInstance => {\n  const userBlock = document.getElementById('user');\n  const logout = document.getElementById('logout');\n  const handleGetUser = () => {\n    if (location.pathname === '/' || location.pathname === '/user' || location.pathname === '/users') {\n      axiosInstance('user').then(({\n        data\n      }) => {\n        if (logout) {\n          logout.classList.remove('hidden');\n          if (location.pathname === '/') {\n            location.assign('/user');\n          }\n        }\n        renderUser(data.user);\n      }).catch(err => console.error(err.message));\n    }\n  };\n  document.addEventListener('DOMContentLoaded', handleGetUser);\n  const renderUser = user => {\n    if (!user) {\n      userBlock.innerHTML = ``;\n      return;\n    }\n    if (userBlock) {\n      userBlock.innerHTML = `\n    <li class=\"list-group-item\"><b>username:</b> ${user.username}</li>\n    <li class=\"list-group-item\"><b>id:</b> ${user.id}</li>\n    <li class=\"list-group-item\"><b>email:</b> ${user.email ?? '-'}</li>\n    <li class=\"list-group-item\"><b>role:</b> ${user.role}</li>\n    `;\n    }\n  };\n};\n\n//# sourceURL=webpack://cookie/../shared/app/user/user.js?");
+
+/***/ }),
+
+/***/ "../shared/app/user/users.js":
+/*!***********************************!*\
+  !*** ../shared/app/user/users.js ***!
+  \***********************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   createGetUsers: function() { return /* binding */ createGetUsers; }\n/* harmony export */ });\n/* harmony import */ var _utils_handle_error__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/handle-error */ \"../shared/app/utils/handle-error.js\");\n/* harmony import */ var _delete__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./delete */ \"../shared/app/user/delete.js\");\n\n\nconst createGetUsers = axiosInstance => {\n  const users = document.getElementById('users');\n  const handleAddEventListenerDelete = (0,_delete__WEBPACK_IMPORTED_MODULE_1__.createHandleAddEventListenerDelete)(axiosInstance);\n  const createUserTable = data => {\n    let tableBody = ``;\n    data.forEach(user => tableBody += `\n    <tr>\n      <td>${user.username}</td>\n      <td>${user.role}</td>\n      <td>${user.email ?? '-'}</td>\n      <td>\n      <button class='btn btn-danger' data-delete data-id='${user.id}'>\n      Удалить\n      </button>\n      <td>\n    </tr>`);\n    users.innerHTML = `<table class=\"table table-striped\">\n    <thead>\n      <tr>\n        <th scope=\"col\">Логин</th>\n        <th scope=\"col\">Роль</th>\n        <th scope=\"col\">Email</th>\n        <th scope=\"col\">Действия</th>\n      </tr>\n    </thead>\n\n    <tbody>\n    ${tableBody}\n    </tbody>\n  </table>\n  `;\n  };\n  const handleGetUsers = () => {\n    axiosInstance('users').then(({\n      data\n    }) => {\n      createUserTable(data.users);\n      handleAddEventListenerDelete(handleGetUsers);\n    }).catch(_utils_handle_error__WEBPACK_IMPORTED_MODULE_0__.handleError);\n  };\n  if (users) {\n    window.addEventListener('load', handleGetUsers);\n  }\n};\n\n//# sourceURL=webpack://cookie/../shared/app/user/users.js?");
+
+/***/ }),
+
 /***/ "../shared/app/utils/handle-error.js":
 /*!*******************************************!*\
   !*** ../shared/app/utils/handle-error.js ***!
   \*******************************************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   handleError: function() { return /* binding */ handleError; }\n/* harmony export */ });\n/* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uuid */ \"../../node_modules/uuid/dist/esm-browser/v4.js\");\n\nconst alert = document.getElementById('alert');\nconst handleError = response => {\n  const id = (0,uuid__WEBPACK_IMPORTED_MODULE_0__[\"default\"])();\n  if (alert && response) {\n    alert.innerHTML = `\n    <div class=\"alert alert-danger\" role=\"alert\" id=\"${id}\">\n    ${response?.data?.message ?? response.message}\n    </div>`;\n  }\n};\n\n//# sourceURL=webpack://cookie/../shared/app/utils/handle-error.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   handleError: function() { return /* binding */ handleError; }\n/* harmony export */ });\n/* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uuid */ \"../../node_modules/uuid/dist/esm-browser/v4.js\");\n\nconst alert = document.getElementById('alert');\nconst handleError = res => {\n  const id = (0,uuid__WEBPACK_IMPORTED_MODULE_0__[\"default\"])();\n  if (alert && res) {\n    alert.innerHTML = `\n    <div class=\"alert alert-danger\" role=\"alert\" id=\"${id}\">\n    ${res?.response?.data?.message ?? res.message}\n    </div>`;\n  }\n};\n\n//# sourceURL=webpack://cookie/../shared/app/utils/handle-error.js?");
 
 /***/ }),
 
@@ -146,7 +186,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \*********************************************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   handleSuccess: function() { return /* binding */ handleSuccess; }\n/* harmony export */ });\n/* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uuid */ \"../../node_modules/uuid/dist/esm-browser/v4.js\");\n\nconst alert = document.getElementById('alert');\nconst handleSuccess = ({\n  message\n}) => {\n  const id = (0,uuid__WEBPACK_IMPORTED_MODULE_0__[\"default\"])();\n  if (alert && message) {\n    alert.innerHTML = `\n    <div class=\"alert alert-success\" role=\"alert\" id=\"${id}\">\n    ${message}\n    </div>`;\n  }\n};\n\n//# sourceURL=webpack://cookie/../shared/app/utils/handle-success.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   handleSuccess: function() { return /* binding */ handleSuccess; }\n/* harmony export */ });\n/* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uuid */ \"../../node_modules/uuid/dist/esm-browser/v4.js\");\n\nconst alert = document.getElementById('alert');\nconst handleSuccess = res => {\n  const id = (0,uuid__WEBPACK_IMPORTED_MODULE_0__[\"default\"])();\n  if (alert && res) {\n    alert.innerHTML = `\n    <div class=\"alert alert-success\" role=\"alert\" id=\"${id}\">\n    ${res?.response?.data?.message ?? res.message}\n    </div>`;\n  }\n};\n\n//# sourceURL=webpack://cookie/../shared/app/utils/handle-success.js?");
 
 /***/ }),
 

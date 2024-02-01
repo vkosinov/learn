@@ -1,5 +1,4 @@
 import { axiosInstance } from '../utils/axios-instance'
-import { handleError } from 'utils/handle-error'
 
 const loginForm = document.getElementById('login')
 
@@ -20,7 +19,7 @@ if (loginForm) {
         location.replace('/user')
       })
       .catch((err) => {
-        handleError(err)
+        console.error(err)
       })
   }
 
