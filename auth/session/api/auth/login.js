@@ -1,6 +1,6 @@
 const bcrypt = require('bcryptjs')
 
-const User = require('../../../shared/models/user')
+const User = require('../../../shared/api/models/user')
 
 exports.login = async (req, res) => {
   const { username, password } = req.body
@@ -17,6 +17,7 @@ exports.login = async (req, res) => {
 
       if (result) {
         req.session.userId = user._id
+        req.session.userRole = user.role
 
         res.status(201).json({
           message: 'User successfully Logged in',

@@ -1,9 +1,9 @@
 const express = require('express')
 const cors = require('cors')
 const sessions = require('express-session')
-const { JWT_SECRET } = require('../../shared/constants')
+const { JWT_SECRET } = require('../../shared/api/constants')
 
-const connectDB = require('../../shared/db')
+const connectDB = require('../../shared/api/db')
 
 connectDB()
 
@@ -30,7 +30,7 @@ app.use('/api', require('./route'))
 const PORT = 5000
 
 const server = app.listen(PORT, () =>
-  console.info(`Server Running at port ${PORT}`)
+  console.info(`Server:session running at port ${PORT}`)
 )
 
 process.on('unhandledRejection', (err) => {
