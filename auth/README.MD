@@ -5,18 +5,20 @@
 
 Реализовал авторизацию с передачей данных:
 
-- через cookie: [клиентская часть](https://github.com/vkosinov/learn/blob/main//auth//cookie/frontend), [темная сторона](https://github.com/vkosinov/learn/blob/main//auth//cookie/backend)
+- через cookie: [клиентская часть](https://github.com/vkosinov/learn/blob/main/auth/cookie/app), [темная сторона](https://github.com/vkosinov/learn/blob/main/auth/cookie/api)
 
-- через заголовок: [frontend](https://github.com/vkosinov/learn/blob/main//auth//header/app), [backend](https://github.com/vkosinov/learn/blob/main//auth//header/api)
+- через заголовок: [frontend](https://github.com/vkosinov/learn/blob/main/auth/header/app), [backend](https://github.com/vkosinov/learn/blob/main//auth//header/api)
 
-- сессии: [frontend](https://github.com/vkosinov/learn/blob/main//auth//session/app), [backend](https://github.com/vkosinov/learn/blob/main//auth//session/api)
+- сессии: [frontend](https://github.com/vkosinov/learn/blob/main/auth/session/app), [backend](https://github.com/vkosinov/learn/blob/main/auth/session/api)
 
 > Отдельно изучить сценарии регистрации нового пользователя,
 > хранения авторизационных данных в БД, восстановления пароля.
 
 В качестве БД использовал mongodb, для примера и тренировки реализовал методы: для регистрации пользователей, для получения списка пользователей, восстановление/смена пароля (сгенерированная ссылка не отправляется через email, формируется под формой), страницу с комментариями (использовалась для тренировки с XSS), удаление пользователей доступное только пользователю роли admin.
 
-Для отображения каждого из примеров использую [статичные html файлы](https://github.com/vkosinov/learn/blob/main/src/public), с разными для каждого сценария js файлами.
+~~Для отображения каждого из примеров использую [статичные html файлы](https://github.com/vkosinov/learn/blob/main/src/public), с разными для каждого сценария js файлами.~~
+
+Для большего контроля над сервером и тренировки настройки CSP использовал Node.js c express
 
 Для серверной части использовал Node.js c express (да будет благословен тот кто пишет без express)
 
