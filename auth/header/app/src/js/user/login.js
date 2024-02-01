@@ -1,5 +1,5 @@
-import { handleError } from '../utils/handle-error'
-import instance from '../utils/instance'
+import { handleError } from 'utils/handle-error'
+import { axiosInstance } from '../utils/axios-instance'
 
 const loginForm = document.getElementById('login')
 
@@ -14,7 +14,7 @@ if (loginForm) {
 
     const params = { username, password }
 
-    instance
+    axiosInstance
       .post('login', params)
       .then(({ data }) => {
         handleError()

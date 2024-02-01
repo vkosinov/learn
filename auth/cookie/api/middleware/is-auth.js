@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken')
 
-const { JWT_SECRET, MAX_AGE } = require('../../../shared/api/constants')
+const { JWT_SECRET } = require('../../../shared/api/constants')
 
 exports.isAuth = (req, res, next) => {
   const token = req.cookies.jwt
