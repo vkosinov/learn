@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken')
 
-const { JWT_SECRET } = require('../../../shared/constants')
-const { getToken } = require('../auth/utils')
+const { JWT_SECRET } = require('../../../shared/api/constants')
+const { getToken } = require('./utils')
 
 exports.isAuth = (req, res, next) => {
   const token = getToken(req)

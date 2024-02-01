@@ -1,8 +1,8 @@
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
-const User = require('../../../shared/models/user')
+const User = require('../../../shared/api/models/user')
 
-const { JWT_SECRET, MAX_AGE } = require('../../../shared/constants')
+const { JWT_SECRET, MAX_AGE } = require('../../../shared/api/constants')
 
 exports.login = async (req, res) => {
   const { username, password } = req.body

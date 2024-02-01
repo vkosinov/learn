@@ -1,9 +1,9 @@
 const jwt = require('jsonwebtoken')
 
-const { JWT_SECRET } = require('../../../shared/constants')
-const { getToken } = require('../auth/utils')
+const { JWT_SECRET } = require('../../../shared/api/constants')
+const { getToken } = require('./utils')
 
-exports.adminAuth = (req, res, next) => {
+exports.isAdminAuth = (req, res, next) => {
   const token = getToken(req)
 
   if (token) {

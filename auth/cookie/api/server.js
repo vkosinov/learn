@@ -18,7 +18,7 @@ app.use('/api', require('./route'))
 const PORT = 5000
 
 const server = app.listen(PORT, () =>
-  console.info(`Server Connected to port ${PORT}`)
+  console.info(`Server:cookie connected to port ${PORT}`)
 )
 
 // Handling Error
