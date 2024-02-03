@@ -1,5 +1,6 @@
 const express = require('express')
 const path = require('path')
+const helmet = require('helmet')
 const { expressCspHeader, SELF, UNSAFE_EVAL } = require('express-csp-header')
 const route = require('../../shared/app/route')
 
@@ -9,13 +10,15 @@ app.use(
   expressCspHeader({
     directives: {
       'default-src': [SELF],
-      'style-src': [SELF, 'https://cdnjs.cloudflare.com/'],
+      'style-src': [SELF, 'https://cdn.jsdelivr.net'],
       'script-src': [SELF, UNSAFE_EVAL],
       'connect-src': [SELF, 'http://localhost:5000'],
+      'frame-ancestors': 'none',
     },
   })
 )
 
+app.use(helmet.frameguard())
 app.set('view engine', 'ejs')
 app.set('views', path.join(__dirname, '../../shared/app/views'))
 app.use(express.static(path.join(__dirname, '../../shared/app/public')))
