@@ -25,7 +25,7 @@ app.use(
     secret: JWT_SECRET,
     cookie: {
       maxAge: 1000 * 60 * 60 * 2, // 2 hours
-      secure: true, // https
+      secure: true,
       sameSite: 'strict',
     },
     resave: true,
@@ -41,7 +41,9 @@ app.use('/api', require('./route'))
 
 https
   .createServer(httpsOptions, app)
-  .listen(PORT, () => console.info(`Server:session running at port ${PORT}`))
+  .listen(PORT, () =>
+    console.info(`Server:session:api running at port ${PORT}`)
+  )
 
 process.on('unhandledRejection', (err) => {
   console.error(`An error occurred: ${err.message}`)

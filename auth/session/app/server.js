@@ -37,4 +37,6 @@ app.use('/', route)
 
 https
   .createServer(httpsOptions, app)
-  .listen(PORT, () => console.info(`Server:session running at port ${PORT}`))
+  .listen(PORT, () =>
+    console.info(`Server:session:app running at port ${PORT}`)
+  )

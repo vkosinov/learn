@@ -30,6 +30,7 @@ exports.login = async (req, res) => {
           httpOnly: true,
           maxAge: MAX_AGE * 1000,
           sameSite: 'strict',
+          secure: true,
         })
 
         res.status(201).json({
