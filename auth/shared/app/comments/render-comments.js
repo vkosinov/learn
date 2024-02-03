@@ -1,3 +1,4 @@
+import { escapeHTML } from '../utils/escape-html'
 export const renderComments = (comments) => {
   const commentsBlock = document.getElementById('comments')
 
@@ -21,7 +22,7 @@ export const renderComments = (comments) => {
     </div>
 
     <div class="card-body">
-    ${comment.content}
+    ${escapeHTML(comment.content)}
     </div>
 </div>`
     })
