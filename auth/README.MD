@@ -41,4 +41,4 @@
   - **Меры для защиты:** Установил для куки sameSite: 'strict', добавил в axios instance кастомный заголовок X-CSRF-PROTECTION и проверяю его наличие на сервере
 
 - Clickjacking
-  - добавил 'frame-ancestors': 'none' в CSP
+  - добавил 'frame-ancestors': 'none' в CSP и X-Frame-Options

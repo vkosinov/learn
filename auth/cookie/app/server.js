@@ -1,5 +1,6 @@
 const express = require('express')
 const path = require('path')
+const helmet = require('helmet')
 const { expressCspHeader, SELF, UNSAFE_EVAL } = require('express-csp-header')
 const route = require('../../shared/app/route')
 
@@ -17,6 +18,7 @@ app.use(
   })
 )
 
+app.use(helmet.frameguard())
 app.set('view engine', 'ejs')
 app.set('views', path.join(__dirname, '../../shared/app/views'))
 app.use(express.static(path.join(__dirname, '../../shared/app/public')))
