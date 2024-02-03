@@ -9,9 +9,10 @@ app.use(
   expressCspHeader({
     directives: {
       'default-src': [SELF],
-      'style-src': [SELF, 'https://cdnjs.cloudflare.com/'],
+      'style-src': [SELF, 'https://cdn.jsdelivr.net'],
       'script-src': [SELF, UNSAFE_EVAL],
       'connect-src': [SELF, 'http://localhost:5000'],
+      'frame-ancestors': 'none',
     },
   })
 )

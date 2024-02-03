@@ -6,6 +6,7 @@ export const axiosInstance = axios.create({
   baseURL: BASE_URL,
   headers: {
     'Content-Type': 'application/json',
+    'X-CSRF-PROTECTION': 'true',
   },
   withCredentials: true,
 })
