@@ -56,7 +56,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _uti
   \********************************************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   axiosInstance: function() { return /* binding */ axiosInstance; }\n/* harmony export */ });\n/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ \"./node_modules/axios/lib/axios.js\");\n\nconst BASE_URL = 'http://localhost:5000/api';\nconst axiosInstance = axios__WEBPACK_IMPORTED_MODULE_0__[\"default\"].create({\n  baseURL: BASE_URL,\n  headers: {\n    'Content-Type': 'application/json'\n  },\n  withCredentials: true\n});\n\n//# sourceURL=webpack://cookie/./app/src/js/utils/axios-instance.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   axiosInstance: function() { return /* binding */ axiosInstance; }\n/* harmony export */ });\n/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ \"./node_modules/axios/lib/axios.js\");\n\nconst BASE_URL = 'https://localhost:5000/api';\nconst axiosInstance = axios__WEBPACK_IMPORTED_MODULE_0__[\"default\"].create({\n  baseURL: BASE_URL,\n  headers: {\n    'Content-Type': 'application/json'\n  },\n  withCredentials: true\n});\n\n//# sourceURL=webpack://cookie/./app/src/js/utils/axios-instance.js?");
 
 /***/ }),
 
