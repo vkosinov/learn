@@ -3,7 +3,7 @@ const path = require('path')
 const https = require('https')
 const fs = require('fs')
 const helmet = require('helmet')
-const { expressCspHeader, SELF, UNSAFE_EVAL } = require('express-csp-header')
+const { expressCspHeader, SELF, NONCE } = require('express-csp-header')
 const route = require('../../shared/app/route')
 
 const app = express()
@@ -20,7 +20,7 @@ app.use(
     directives: {
       'default-src': [SELF],
       'style-src': [SELF, 'https://cdn.jsdelivr.net'],
-      'script-src': [SELF, UNSAFE_EVAL],
+      'script-src': [SELF, NONCE],
       'connect-src': [SELF, 'https://localhost:5000'],
       'frame-ancestors': 'none',
     },
