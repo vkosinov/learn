@@ -9,4 +9,9 @@
     crossorigin="anonymous"
   />
   <link href="/css/style.css" rel="stylesheet" type="text/css" />
+  <meta property="csp-nonce" content="<%= nonce%>" />
+
+  <script type="text/javascript" nonce="<%= nonce %>">
+    window.__webpack_nonce__ = '<%= nonce %>'
+  </script>
 </head>

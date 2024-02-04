@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="ru">
-  <%- include('../partials/head'); %>
+<html lang="ru" id="<%= nonce %>">
+  <%- include('../partials/head', { nonce }); %>
 
   <body class="container">
     <%- include('../partials/header'); %>
