@@ -16,7 +16,8 @@ if (loginForm) {
 
     axiosInstance
       .post('login', params)
-      .then(() => {
+      .then(({ data }) => {
+        sessionStorage.setItem('csrf-token', data.csrfToken)
         location.replace('/user')
       })
       .catch((err) => {

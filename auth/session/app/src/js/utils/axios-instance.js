@@ -9,3 +9,9 @@ export const axiosInstance = axios.create({
   },
   withCredentials: true,
 })
+
+axiosInstance.interceptors.request.use(function (config) {
+  const token = sessionStorage.getItem('csrf-token')
+  config.headers['X-CSRF-TOKEN'] = token
+  return config
+})
