@@ -2,6 +2,7 @@
 
 - [Didact](https://github.com/vkosinov/learn/blob/main/react/didact)
 - [Bicycle](https://github.com/vkosinov/learn/blob/main/react/bicycle)
+- [Redux saga](https://github.com/vkosinov/learn/blob/main/react/redux-saga)
 
 # Browser testing
 
