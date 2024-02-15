@@ -1,10 +1,12 @@
 import { memo } from 'react'
-import { MainPage } from '../../pages/main'
+import { RouterProvider } from 'react-router-dom'
+
+import { router } from './router'
 
 export const App = memo(() => {
   return (
     <>
-      <MainPage />
+      <RouterProvider router={router} />
     </>
   )
 })

@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../../../store'
 
-import { Col, Row } from 'antd'
+import { Col, Row, Typography } from 'antd'
 import { ProductCard, fetchProductsStarted } from '../../../entities/product'
 
 export const ProductList = () => {
@@ -12,20 +12,23 @@ export const ProductList = () => {
     (state: RootState) => state.products.value.products
   )
 
+  const { Title } = Typography
+
   useEffect(() => {
     dispatch(fetchProductsStarted())
   }, [dispatch])
 
   return (
     <>
-      <h2>Products</h2>
+      <Title>Products</Title>
+
       {status === 'LOADING' && <p>Loading</p>}
       {status === 'FAILED' && <p>Error</p>}
 
       {status === 'SUCCESS' && (
         <Row gutter={[32, 32]}>
           {products.map((product) => (
-            <Col span={4} key={product.id}>
+            <Col span={6} key={product.id}>
               <ProductCard {...product} />
             </Col>
           ))}
