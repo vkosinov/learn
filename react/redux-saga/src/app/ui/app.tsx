@@ -1,11 +1,11 @@
 import { memo } from 'react'
-import { Products } from '../../entities/products'
+import { ProductList } from '../../widgets/product-list'
 
 export const App = memo(() => {
   return (
     <>
       <h1>APP</h1>
-      <Products />
+      <ProductList />
     </>
   )
 })

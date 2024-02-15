@@ -1,5 +1,5 @@
 import { put, takeLatest } from 'redux-saga/effects'
-import { axiosInstance } from '../../utils/axios-instance'
+import { axiosInstance } from '../../api'
 import { fetchProductsFailed, fetchProductsSucceeded } from './slice'
 
 import type { ProductsState } from './types'

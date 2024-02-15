@@ -1,9 +1,11 @@
-import { memo, useEffect } from 'react'
-import { fetchProductsStarted } from '../slice'
+import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../../../store'
 
-export const Products = memo(() => {
+import { Col, Row } from 'antd'
+import { ProductCard, fetchProductsStarted } from '../../../entities/product'
+
+export const ProductList = () => {
   const dispatch = useDispatch()
   const status = useSelector((state: RootState) => state.products.value.status)
   const products = useSelector(
@@ -19,16 +21,16 @@ export const Products = memo(() => {
       <h2>Products</h2>
       {status === 'LOADING' && <p>Loading</p>}
       {status === 'FAILED' && <p>Error</p>}
-      {status === 'SUCCESS' && <p>Success</p>}
+
       {status === 'SUCCESS' && (
-        <>
-          {products.map((item) => (
-            <p key={item.id}>
-              <b>{item.title}</b>: {item.price}
-            </p>
+        <Row gutter={[32, 32]}>
+          {products.map((product) => (
+            <Col span={4} key={product.id}>
+              <ProductCard {...product} />
+            </Col>
           ))}
-        </>
+        </Row>
       )}
     </>
   )
-})
+}

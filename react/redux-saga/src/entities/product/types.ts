@@ -11,3 +11,12 @@ export type Product = {
   thumbnail: string
   images: string[]
 }
+
+export type ProductsState = {
+  products: Product[]
+  total: number
+  skip: number
+  limit: number
+  status: 'IDLE' | 'LOADING' | 'SUCCESS' | 'FAILED'
+  error: string | null
+}

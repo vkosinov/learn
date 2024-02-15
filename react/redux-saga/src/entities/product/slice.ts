@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { INITIAL_STATE } from './constants'
 
-export const productsSlice = createSlice({
+export const productSlice = createSlice({
   name: 'products',
   initialState: {
     value: INITIAL_STATE,
@@ -23,4 +23,4 @@ export const {
   fetchProductsStarted,
   fetchProductsSucceeded,
   fetchProductsFailed,
-} = productsSlice.actions
+} = productSlice.actions

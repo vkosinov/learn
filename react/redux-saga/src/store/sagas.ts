@@ -1,5 +1,5 @@
 import { all, fork } from 'redux-saga/effects'
-import { watchFetchProducts } from '../entities/products'
+import { watchFetchProducts } from '../entities/product'
 
 export const rootSaga = function* () {
   yield all([
