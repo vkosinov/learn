@@ -3,7 +3,7 @@ import { RootState } from '../../../store'
 import { cartSlice } from '../slice'
 
 export const Cart = () => {
-  const count = useSelector((state: RootState) => state.cart.value)
+  const count = 0 //useSelector((state: RootState) => state.cart.value)
   const dispatch = useDispatch()
 
   const { increment, decrement } = cartSlice.actions

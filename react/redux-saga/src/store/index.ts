@@ -1,6 +1,15 @@
-import { configureStore } from '@reduxjs/toolkit'
-import { cartSlice } from '../features/cart'
+import createSagaMiddleware from 'redux-saga'
+import { Tuple, configureStore } from '@reduxjs/toolkit'
+import { rootReducers } from './reducers'
+import { rootSaga } from './sagas'
 
-export const store = configureStore({ reducer: { cart: cartSlice.reducer } })
+const sagaMiddleware = createSagaMiddleware()
+
+export const store = configureStore({
+  reducer: rootReducers,
+  middleware: () => new Tuple(sagaMiddleware),
+})
+
+sagaMiddleware.run(rootSaga)
 
 export type RootState = ReturnType<typeof store.getState>
