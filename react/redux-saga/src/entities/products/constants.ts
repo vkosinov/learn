@@ -9,4 +9,4 @@ export const INITIAL_STATE: ProductsState = {
   error: null,
 }
 
-export const FETCH_PRODUCTS_BEGIN = 'products/fetchProductsStarted'
+export const FETCH_PRODUCTS_STARTED = 'products/fetchProductsStarted'

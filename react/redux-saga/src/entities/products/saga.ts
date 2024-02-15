@@ -1,14 +1,10 @@
 import { put, takeLatest } from 'redux-saga/effects'
 import { axiosInstance } from '../../utils/axios-instance'
-import {
-  fetchProductsFailed,
-  fetchProductsStarted,
-  fetchProductsSucceeded,
-} from './slice'
+import { fetchProductsFailed, fetchProductsSucceeded } from './slice'
 
 import type { ProductsState } from './types'
 import { AxiosResponse } from 'axios'
-import { FETCH_PRODUCTS_BEGIN } from './constants'
+import { FETCH_PRODUCTS_STARTED } from './constants'
 
 function* fetchProductsSaga() {
   try {
@@ -22,5 +18,5 @@ function* fetchProductsSaga() {
 }
 
 export function* watchFetchProducts() {
-  yield takeLatest(FETCH_PRODUCTS_BEGIN, fetchProductsSaga)
+  yield takeLatest(FETCH_PRODUCTS_STARTED, fetchProductsSaga)
 }

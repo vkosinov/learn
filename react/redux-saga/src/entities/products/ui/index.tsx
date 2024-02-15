@@ -1,9 +1,9 @@
-import { useEffect } from 'react'
+import { memo, useEffect } from 'react'
 import { fetchProductsStarted } from '../slice'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../../../store'
 
-export const Products = () => {
+export const Products = memo(() => {
   const dispatch = useDispatch()
   const status = useSelector((state: RootState) => state.products.value.status)
   const products = useSelector(
@@ -20,7 +20,15 @@ export const Products = () => {
       {status === 'LOADING' && <p>Loading</p>}
       {status === 'FAILED' && <p>Error</p>}
       {status === 'SUCCESS' && <p>Success</p>}
-      {status === 'SUCCESS' && <p>{JSON.stringify(products)}</p>}
+      {status === 'SUCCESS' && (
+        <>
+          {products.map((item) => (
+            <p key={item.id}>
+              <b>{item.title}</b>: {item.price}
+            </p>
+          ))}
+        </>
+      )}
     </>
   )
-}
+})
