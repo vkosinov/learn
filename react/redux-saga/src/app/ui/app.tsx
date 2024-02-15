@@ -1,11 +1,10 @@
 import { memo } from 'react'
-import { ProductList } from '../../widgets/product-list'
+import { MainPage } from '../../pages/main'
 
 export const App = memo(() => {
   return (
     <>
-      <h1>APP</h1>
-      <ProductList />
+      <MainPage />
     </>
   )
 })
