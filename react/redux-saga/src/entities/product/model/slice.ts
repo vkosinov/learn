@@ -1,26 +1,28 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 import { INITIAL_STATE } from './constants'
 
 export const productSlice = createSlice({
-  name: 'products',
+  name: 'product',
   initialState: {
     value: INITIAL_STATE,
   },
   reducers: {
-    fetchProductsStarted: (state) => {
+    fetchProductStarted: (state, { payload: id }: PayloadAction<string>) => {
       state.value = { ...state.value, status: 'LOADING', error: '' }
     },
-    fetchProductsSucceeded: (state, action) => {
+
+    fetchProductSucceeded: (state, action) => {
       state.value = { ...action.payload, status: 'SUCCESS' }
     },
-    fetchProductsFailed: (state, action) => {
+
+    fetchProductFailed: (state, action) => {
       state.value = { ...state.value, error: action.payload }
     },
   },
 })
 
 export const {
-  fetchProductsStarted,
-  fetchProductsSucceeded,
-  fetchProductsFailed,
+  fetchProductStarted,
+  fetchProductSucceeded,
+  fetchProductFailed,
 } = productSlice.actions

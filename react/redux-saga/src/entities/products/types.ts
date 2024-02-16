@@ -1,3 +1,5 @@
+import { FetchStatus } from '../../shared/types'
+
 export type Product = {
   id: number
   title: string
@@ -11,6 +13,6 @@ export type ProductsState = {
   total: number
   skip: number
   limit: number
-  status: 'IDLE' | 'LOADING' | 'SUCCESS' | 'FAILED'
+  status: FetchStatus
   error: string | null
 }
