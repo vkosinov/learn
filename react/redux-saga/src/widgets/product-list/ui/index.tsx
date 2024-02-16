@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../../../store'
 
 import { Col, Row, Typography } from 'antd'
-import { ProductCard, fetchProductsStarted } from '../../../entities/product'
+import { ProductCard, fetchProductsStarted } from '../../../entities/products'
 
 export const ProductList = () => {
   const dispatch = useDispatch()

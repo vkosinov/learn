@@ -9,7 +9,7 @@ import { FETCH_PRODUCTS_STARTED } from './constants'
 function* fetchProductsSaga() {
   try {
     const res: AxiosResponse<ProductsState> = yield axiosInstance.get(
-      '/products'
+      '/products?select=title,price,images,description'
     )
     yield put(fetchProductsSucceeded(res.data))
   } catch (err) {

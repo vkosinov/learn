@@ -1,4 +1,4 @@
-import { productSlice } from '../entities/product'
+import { productSlice } from '../entities/products'
 
 export const rootReducers = {
   products: productSlice.reducer,
