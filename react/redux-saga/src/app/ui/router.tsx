@@ -10,6 +10,6 @@ export const router = createBrowserRouter([
   {
     path: '/product/:id',
     element: <ProductPage />,
-    loader: ({ params }) => params,
+    // loader: ({ params }) => params,
   },
 ])

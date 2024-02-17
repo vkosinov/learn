@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../../../store'
 
-import { Col, Row, Typography } from 'antd'
+import { Col, Row, Spin, Typography } from 'antd'
 import { ProductCard, fetchProductsStarted } from '../../../entities/products'
 
 export const ProductList = () => {
@@ -22,14 +22,23 @@ export const ProductList = () => {
     <>
       <Title>Products</Title>
 
-      {status === 'LOADING' && <p>Loading</p>}
+      {status === 'LOADING' && (
+        <Spin
+          size="large"
+          style={{ display: 'grid', placeContent: 'center', margin: '32px 0' }}
+        />
+      )}
+
       {status === 'FAILED' && <p>Error</p>}
 
       {status === 'SUCCESS' && (
         <Row gutter={[32, 32]}>
           {products.map((product) => (
             <Col span={6} key={product.id}>
-              <ProductCard {...product} />
+              <ProductCard
+                {...product}
+                thumbnail={product.images[product.images.length - 1]}
+              />
             </Col>
           ))}
         </Row>

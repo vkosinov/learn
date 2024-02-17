@@ -5,8 +5,6 @@ import { Product } from '../../../widgets/product'
 export const ProductPage = () => {
   const { id } = useParams()
 
-  console.log(id)
-
   return (
     <ProductLayout>
       <Product id={id} />

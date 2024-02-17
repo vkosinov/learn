@@ -8,15 +8,15 @@ export const productSlice = createSlice({
   },
   reducers: {
     fetchProductStarted: (state, { payload: id }: PayloadAction<string>) => {
-      state.value = { ...state.value, status: 'LOADING', error: '' }
+      state.value = { data: null, status: 'LOADING', error: null }
     },
 
     fetchProductSucceeded: (state, action) => {
-      state.value = { ...action.payload, status: 'SUCCESS' }
+      state.value = { data: action.payload, status: 'SUCCESS', error: null }
     },
 
     fetchProductFailed: (state, action) => {
-      state.value = { ...state.value, error: action.payload }
+      state.value = { data: null, error: action.payload, status: 'FAILED' }
     },
   },
 })
