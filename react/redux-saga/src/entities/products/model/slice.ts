@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
-import { INITIAL_PAGINATION, INITIAL_STATE } from './constants'
+import { INITIAL_STATE } from './constants'
 
 export const productsSlice = createSlice({
   name: 'products',
@@ -9,10 +9,10 @@ export const productsSlice = createSlice({
   reducers: {
     fetchProductsStarted: (state) => {
       state.value = {
+        ...state.value,
         data: [],
         status: 'LOADING',
         error: null,
-        pagination: INITIAL_PAGINATION,
       }
     },
 
@@ -24,6 +24,7 @@ export const productsSlice = createSlice({
           total: action.payload.total,
           skip: action.payload.skip,
           limit: action.payload.limit,
+          current: state.value.pagination.current,
         },
         status: 'SUCCESS',
       }
@@ -38,12 +39,16 @@ export const productsSlice = createSlice({
       }
     },
 
-    setPaginationSkip: (state, { payload: skip }: PayloadAction<number>) => {
+    setPaginationCurrent: (
+      state,
+      { payload: current }: PayloadAction<number>
+    ) => {
       state.value = {
         ...state.value,
         pagination: {
           ...state.value.pagination,
-          skip,
+          current,
+          skip: (current - 1) * state.value.pagination.limit,
         },
       }
     },
@@ -55,6 +60,7 @@ export const productsSlice = createSlice({
           ...state.value.pagination,
           limit,
           skip: 0,
+          current: 1,
         },
       }
     },
@@ -65,6 +71,6 @@ export const {
   fetchProductsStarted,
   fetchProductsSucceeded,
   fetchProductsFailed,
-  setPaginationSkip,
+  setPaginationCurrent,
   setPaginationLimit,
 } = productsSlice.actions

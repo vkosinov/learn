@@ -16,6 +16,7 @@ export type ProductsState = {
 }
 
 export type Pagination = {
+  current: number
   total: number
   skip: number
   limit: number

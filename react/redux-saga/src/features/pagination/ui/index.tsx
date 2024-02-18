@@ -2,24 +2,27 @@ import { Pagination as AntdPagination } from 'antd'
 import { RootState } from '../../../shared/store'
 import { useDispatch, useSelector } from 'react-redux'
 import {
-  setPaginationSkip,
   setPaginationLimit,
+  fetchProductsStarted,
+  setPaginationCurrent,
 } from '../../../entities/products'
 
 export const Pagination = () => {
   const dispatch = useDispatch()
 
   const pagination = useSelector(
-    (state: RootState) => state.products.value.pagination,
+    (state: RootState) => state.products.value.pagination
   )
 
   const handleChange = (page: number, pageSize: number) => {
     if (pageSize !== pagination.limit) {
       dispatch(setPaginationLimit(pageSize))
+      dispatch(fetchProductsStarted())
       return
     }
 
-    dispatch(setPaginationSkip((page - 1) * pageSize))
+    dispatch(setPaginationCurrent(page))
+    dispatch(fetchProductsStarted())
   }
 
   return (
@@ -28,6 +31,7 @@ export const Pagination = () => {
       total={pagination.total}
       pageSize={pagination.limit}
       onChange={handleChange}
+      current={pagination.current}
     />
   )
 }

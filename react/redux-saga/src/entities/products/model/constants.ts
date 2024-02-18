@@ -1,6 +1,7 @@
 import { Pagination, ProductsState } from '../types'
 
 export const INITIAL_PAGINATION: Pagination = {
+  current: 1,
   total: 100,
   skip: 0,
   limit: 10,
