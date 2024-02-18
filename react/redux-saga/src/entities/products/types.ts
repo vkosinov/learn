@@ -9,10 +9,14 @@ export type Product = {
 }
 
 export type ProductsState = {
-  products: Product[]
+  data: Product[]
+  pagination: Pagination
+  status: FetchStatus
+  error: string | null
+}
+
+export type Pagination = {
   total: number
   skip: number
   limit: number
-  status: FetchStatus
-  error: string | null
 }

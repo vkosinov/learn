@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { RootState } from '../../../store'
+import { RootState } from '../../../shared/store'
 import { cartSlice } from '../slice'
 
 export const Cart = () => {

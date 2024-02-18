@@ -1,7 +1,7 @@
 import { memo, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { ProductInfo, fetchProductStarted } from '../../../entities/product'
-import { RootState } from '../../../store'
+import { RootState } from '../../../shared/store'
 import { Spin } from 'antd'
 
 type Props = {

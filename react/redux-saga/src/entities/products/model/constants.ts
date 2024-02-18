@@ -1,10 +1,14 @@
-import { ProductsState } from '../types'
+import { Pagination, ProductsState } from '../types'
+
+export const INITIAL_PAGINATION: Pagination = {
+  total: 100,
+  skip: 0,
+  limit: 10,
+}
 
 export const INITIAL_STATE: ProductsState = {
-  products: [],
-  total: 10,
-  skip: 0,
-  limit: 30,
+  data: [],
+  pagination: INITIAL_PAGINATION,
   status: 'IDLE',
   error: null,
 }
