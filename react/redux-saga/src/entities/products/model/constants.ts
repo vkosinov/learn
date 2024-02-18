@@ -15,3 +15,5 @@ export const INITIAL_STATE: ProductsState = {
 }
 
 export const FETCH_PRODUCTS_STARTED = 'products/fetchProductsStarted'
+export const SET_PAGINATION_CURRENT = 'products/setPaginationCurrent'
+export const SET_PAGINATION_LIMIT = 'products/setPaginationLimit'

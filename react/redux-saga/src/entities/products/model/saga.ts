@@ -4,7 +4,7 @@ import { fetchProductsFailed, fetchProductsSucceeded } from './slice'
 
 import type { ProductsState } from '../types'
 import { AxiosResponse } from 'axios'
-import { FETCH_PRODUCTS_STARTED } from './constants'
+import { FETCH_PRODUCTS_STARTED, SET_PAGINATION_CURRENT } from './constants'
 import { RootState } from '../../../shared/store'
 
 function* fetchProductsSaga() {
@@ -19,7 +19,7 @@ function* fetchProductsSaga() {
           limit: state.products.value.pagination.limit,
           skip: state.products.value.pagination.skip,
         },
-      },
+      }
     )
     yield put(fetchProductsSucceeded(res.data))
   } catch (err) {
@@ -28,5 +28,8 @@ function* fetchProductsSaga() {
 }
 
 export function* watchFetchProducts() {
-  yield takeLatest(FETCH_PRODUCTS_STARTED, fetchProductsSaga)
+  yield takeLatest(
+    [FETCH_PRODUCTS_STARTED, SET_PAGINATION_CURRENT],
+    fetchProductsSaga
+  )
 }
