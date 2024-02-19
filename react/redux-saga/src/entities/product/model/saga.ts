@@ -10,7 +10,7 @@ import { GET_PRODUCT_BY_ID } from './constants'
 function* getProductSaga({ payload: id }: PayloadAction<string>) {
   try {
     const res: AxiosResponse<ProductState> = yield axiosInstance.get(
-      `/products/${id}`
+      `/products/${id}`,
     )
     yield put(fetchProductSucceeded(res.data))
   } catch (error) {

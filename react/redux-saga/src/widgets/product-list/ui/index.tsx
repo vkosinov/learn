@@ -4,6 +4,7 @@ import { RootState } from '../../../shared/store'
 
 import { Col, Row, Spin, Typography } from 'antd'
 import { ProductCard, fetchProductsStarted } from '../../../entities/products'
+
 import { Pagination } from '../../../features/pagination'
 
 export const ProductList = () => {
@@ -36,7 +37,11 @@ export const ProductList = () => {
             {products.map((product) => (
               <Col span={6} key={product.id}>
                 <ProductCard
-                  {...product}
+                  id={product.id}
+                  title={product.title}
+                  description={product.description}
+                  stock={product.stock}
+                  price={product.price}
                   thumbnail={product.images[product.images.length - 1]}
                 />
               </Col>

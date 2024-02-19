@@ -1,16 +1,15 @@
-import { ShoppingCartOutlined } from '@ant-design/icons'
 import { Layout, Menu, theme } from 'antd'
 
 import React, { memo } from 'react'
-import { Link } from 'react-router-dom'
+import { Header } from '../../../../widgets/header'
 
-const { Header, Content, Sider, Footer } = Layout
+const { Content, Sider, Footer } = Layout
 
 type Props = { children: React.ReactNode }
 
 export const ProductLayout = memo(({ children }: Props) => {
   const {
-    token: { colorBgContainer, borderRadiusLG, boxShadowTertiary },
+    token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken()
 
   return (
@@ -25,27 +24,7 @@ export const ProductLayout = memo(({ children }: Props) => {
       </Sider>
 
       <Layout>
-        <Header
-          style={{
-            position: 'sticky',
-            top: 0,
-            zIndex: 1,
-            display: 'flex',
-            alignItems: 'center',
-            backgroundColor: colorBgContainer,
-            boxShadow: boxShadowTertiary,
-          }}
-        >
-          <Link to="/">SHOP</Link>
-
-          <Link to="/card" style={{ marginLeft: 'auto' }}>
-            <ShoppingCartOutlined
-              style={{
-                fontSize: '32px',
-              }}
-            />
-          </Link>
-        </Header>
+        <Header />
 
         <Content
           style={{
