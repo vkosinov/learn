@@ -1,7 +1,14 @@
-import { Card, Descriptions, Image, Typography, Flex } from 'antd'
-const { Title, Paragraph, Text } = Typography
+import { Card, Descriptions, Image, Typography, Flex, Button } from 'antd'
+import { getIsAddedCart } from '../../../shared/utils'
+import { useDispatch, useSelector } from 'react-redux'
+import { RootState } from '../../../shared/store'
+import { DeleteOutlined, ShoppingCartOutlined } from '@ant-design/icons'
+import { MouseEventHandler } from 'react'
+import { CartItem, add, remove } from '../../cart'
+const { Title, Paragraph } = Typography
 
 type Props = {
+  id: number
   title: string
   description: string
   thumbnail: string
@@ -23,7 +30,36 @@ export const ProductInfo = ({
   rating,
   price,
   images,
+  id,
 }: Props) => {
+  const dispatch = useDispatch()
+  const cart = useSelector((state: RootState) => state.cart.value)
+
+  const isAddedCart = getIsAddedCart(cart, id)
+
+  const handleAdd: MouseEventHandler<HTMLElement> = (evt) => {
+    evt.preventDefault()
+    evt.stopPropagation()
+
+    const cartItem: CartItem = {
+      id,
+      img: thumbnail,
+      title,
+      price,
+      stock,
+      count: 1,
+    }
+
+    dispatch(add(cartItem))
+  }
+
+  const handleRemove: MouseEventHandler<HTMLElement> = (evt) => {
+    evt.preventDefault()
+    evt.stopPropagation()
+
+    dispatch(remove(id))
+  }
+
   return (
     <Card>
       <Title>{title}</Title>
@@ -44,7 +80,32 @@ export const ProductInfo = ({
         <Descriptions.Item label="Рейтинг">{rating}</Descriptions.Item>
       </Descriptions>
 
-      <Text>{price} V-RUB</Text>
+      <Flex justify="space-between" align={'center'}>
+        <Title level={2}>{price} V-RUB</Title>
+
+        {!isAddedCart && (
+          <Button
+            type="primary"
+            icon={<ShoppingCartOutlined />}
+            onClick={handleAdd}
+            size="large"
+          >
+            Add to cart
+          </Button>
+        )}
+
+        {isAddedCart && (
+          <Button
+            danger
+            type="primary"
+            icon={<DeleteOutlined />}
+            onClick={handleRemove}
+            size="large"
+          >
+            Remove from cart
+          </Button>
+        )}
+      </Flex>
     </Card>
   )
 }

@@ -6,7 +6,7 @@ import { DeleteOutlined, ShoppingCartOutlined } from '@ant-design/icons'
 import { CartItem, add, remove } from '../../cart'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../../../shared/store'
-import { getIsAddedCart } from './utils'
+import { getIsAddedCart } from '../../../shared/utils'
 
 type Props = {
   id: number

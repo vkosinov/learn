@@ -30,6 +30,7 @@ export const Product = memo(({ id }: Props) => {
 
       {status === 'SUCCESS' && product && (
         <ProductInfo
+          id={product.id}
           title={product.title}
           description={product.description}
           thumbnail={product.thumbnail}

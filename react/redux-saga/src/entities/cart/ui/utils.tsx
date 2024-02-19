@@ -2,6 +2,7 @@ import { Button, Flex, TableColumnsType } from 'antd'
 import { CartItem } from '../types'
 import { Image } from 'antd'
 import { DeleteOutlined } from '@ant-design/icons'
+import { Link } from 'react-router-dom'
 
 export const getColumns = (
   onRemove: (id: number) => void,
@@ -13,7 +14,14 @@ export const getColumns = (
     render: (src) => <Image src={src} width={64} />,
     width: '10%',
   },
-  { title: 'Title', dataIndex: 'title', key: 'title' },
+  {
+    title: 'Title',
+    dataIndex: 'title',
+    key: 'title',
+    render: (title, record) => (
+      <Link to={`/product/${record['id']}`}>{title}</Link>
+    ),
+  },
   { title: 'Stock', dataIndex: 'stock', key: 'stock', width: '10%' },
   {
     title: 'Price',
