@@ -1,13 +1,14 @@
-import { Layout, Menu, theme } from 'antd'
+import { Layout, theme } from 'antd'
 
 import React, { memo } from 'react'
 import { Header } from '../../../../widgets/header'
+import { CategoryFilter } from '../../../../features/category-filter'
 
 const { Content, Sider, Footer } = Layout
 
-type Props = { children: React.ReactNode }
+type Props = { children: React.ReactNode; isProducts?: boolean }
 
-export const ProductLayout = memo(({ children }: Props) => {
+export const ProductLayout = memo(({ children, isProducts }: Props) => {
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken()
@@ -15,12 +16,7 @@ export const ProductLayout = memo(({ children }: Props) => {
   return (
     <Layout>
       <Sider breakpoint="lg" collapsedWidth="0">
-        <Menu
-          theme="dark"
-          mode="inline"
-          defaultSelectedKeys={['4']}
-          items={[]}
-        />
+        {isProducts && <CategoryFilter />}
       </Sider>
 
       <Layout>

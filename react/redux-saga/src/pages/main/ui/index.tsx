@@ -3,7 +3,7 @@ import { ProductLayout } from '../../layout/product'
 
 export const MainPage = () => {
   return (
-    <ProductLayout>
+    <ProductLayout isProducts>
       <ProductList />
     </ProductLayout>
   )
