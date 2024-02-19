@@ -1,4 +1,12 @@
-import { Card, Descriptions, Image, Typography, Flex, Button } from 'antd'
+import {
+  Card,
+  Descriptions,
+  Image,
+  Typography,
+  Flex,
+  Button,
+  Breadcrumb,
+} from 'antd'
 import { getIsAddedCart } from '../../../shared/utils'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../../../shared/store'
@@ -62,6 +70,8 @@ export const ProductInfo = ({
 
   return (
     <Card>
+      <Breadcrumb items={[{ title: <a href="/">Home</a> }, { title: title }]} />
+
       <Title>{title}</Title>
       <Flex gap="middle">
         <Image src={thumbnail} />
