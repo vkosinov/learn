@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
-import { INITIAL_STATE } from './constants'
+import { INITIAL_PAGINATION, INITIAL_STATE } from './constants'
 
 export const productsSlice = createSlice({
   name: 'products',
@@ -18,7 +18,7 @@ export const productsSlice = createSlice({
 
     fetchProductsSucceeded: (state, action) => {
       state.value = {
-        ...action.payload,
+        ...state.value,
         data: action.payload.products,
         pagination: {
           total: action.payload.total,
@@ -64,6 +64,17 @@ export const productsSlice = createSlice({
         },
       }
     },
+
+    setProductsCategory: (
+      state,
+      { payload: category }: PayloadAction<string | null>
+    ) => {
+      state.value = {
+        ...state.value,
+        pagination: INITIAL_PAGINATION,
+        category,
+      }
+    },
   },
 })
 
@@ -73,4 +84,5 @@ export const {
   fetchProductsFailed,
   setPaginationCurrent,
   setPaginationLimit,
+  setProductsCategory,
 } = productsSlice.actions

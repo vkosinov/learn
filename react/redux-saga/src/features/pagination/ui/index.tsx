@@ -22,6 +22,10 @@ export const Pagination = () => {
     dispatch(setPaginationCurrent(page))
   }
 
+  if (pagination.total <= pagination.limit) {
+    return null
+  }
+
   return (
     <AntdPagination
       style={{ marginTop: 16, display: 'flex', justifyContent: 'center' }}

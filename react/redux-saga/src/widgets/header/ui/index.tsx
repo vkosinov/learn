@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { CartHeader } from '../../../features/cart-header'
 import { useSelector } from 'react-redux'
 import { RootState } from '../../../shared/store'
+import { HeartOutlined } from '@ant-design/icons'
 
 const { Header: HeaderAntd } = Layout
 
@@ -26,7 +27,9 @@ export const Header = () => {
         boxShadow: boxShadowTertiary,
       }}
     >
-      <Link to="/">SHOP</Link>
+      <Link to="/">
+        <HeartOutlined /> SHOP
+      </Link>
 
       <CartHeader count={cart.value.length} />
     </HeaderAntd>

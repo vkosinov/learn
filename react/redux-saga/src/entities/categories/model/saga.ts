@@ -2,7 +2,7 @@ import { AxiosResponse } from 'axios'
 import { put, select, takeLatest } from 'redux-saga/effects'
 
 import { fetchCategoriesFailed, fetchCategoriesSucceeded } from './slice'
-import { axiosInstance } from '../../../api'
+import { api } from '../../../api'
 import { GET_CATEGORIES } from './constants'
 import { RootState } from '../../../shared/store'
 
@@ -14,8 +14,7 @@ function* getCategoriesSaga() {
       yield state.categories.value.data
     }
 
-    const res: AxiosResponse<string[]> =
-      yield axiosInstance.get(`/products/categories`)
+    const res: AxiosResponse<string[]> = yield api.getCategories
     yield put(fetchCategoriesSucceeded(res.data))
   } catch (error) {
     yield put(fetchCategoriesFailed(error))

@@ -1,12 +1,14 @@
-import { Button, Table } from 'antd'
+import { Alert, Button, Table } from 'antd'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../../../shared/store'
 
 import { remove, clear } from '../model'
 import { getColumns, getFooter } from './utils'
+import { useState } from 'react'
 
 export const CardTable = () => {
+  const [visible, setVisible] = useState<boolean>(false)
   const cart = useSelector((state: RootState) => state.cart.value)
   const dispatch = useDispatch()
 
@@ -20,6 +22,7 @@ export const CardTable = () => {
 
   const handleBuy = () => {
     console.info(cart)
+    setVisible(true)
     dispatch(clear())
   }
 
@@ -27,6 +30,15 @@ export const CardTable = () => {
 
   return (
     <>
+      {visible && (
+        <Alert
+          message="Order successfully completed!"
+          type="success"
+          closable
+          style={{ marginBottom: 16 }}
+        />
+      )}
+
       <Table
         columns={columns}
         dataSource={data}

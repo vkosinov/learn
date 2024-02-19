@@ -12,6 +12,7 @@ export const CartHeader = memo(({ count }: Props) => {
         <ShoppingCartOutlined
           style={{
             fontSize: '32px',
+            color: '#fdcc58',
           }}
         />
       </Badge>

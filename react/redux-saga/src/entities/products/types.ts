@@ -14,6 +14,7 @@ export type ProductsState = {
   pagination: Pagination
   status: FetchStatus
   error: string | null
+  category: string | null
 }
 
 export type Pagination = {
