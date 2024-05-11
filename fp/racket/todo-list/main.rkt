@@ -6,6 +6,7 @@
 (require "./remove-task.rkt")
 (require "./print-tasks.rkt")
 (require "./print-command.rkt")
+(require "./save.rkt")
 
 ; Создает пустой список (расширяемый вектор)
 (define todo-list (gvector))
@@ -27,6 +28,8 @@
         ((= choice 4) ; Выйти
          (system "clear")
          (printf "Выход..."))
+        ((= choice 5) ; Выйти и сохранить
+         (save todo-list))
         (else ; Обработка на случай если введен номер не из допусимого списка
          (system "clear")
          (printf "Введен недопустимый номер задачи! \n")
