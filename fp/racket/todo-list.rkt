@@ -1,7 +1,9 @@
 #lang racket
 
 (require data/gvector)
-(require readline/rep-start)
+
+;
+(define (string-trim-right srt) (substring srt 0 (- (string-length srt) 1)))
 
 ;Создает пустой список (расширяемый вектор)
 (define todo-list (gvector))
@@ -12,39 +14,42 @@
 
 ;Удаляет задачу из списка по индексу
 (define (remove-task index)
-  (gvector-remove! todo-list index))
+  (if (and (integer? index)                    ; Проверяем, что index является целым числом
+           (>= index 0)                        ; Проверяем, что index неотрицателен
+           (< index (gvector-count todo-list))) ; Проверяем, что index меньше длины списка
+      (begin
+        (gvector-remove! todo-list index)
+        (printf "Задача под индексом ~a удалена\n" index))
+      (printf "Неверный индекс задачи! \n")))
 
 ;Проверем не пуст ли список задач
-(define is-empty-todo-list function
+(define (is-empty-todo-list function)
   (if (= 0 (gvector-count todo-list))
       (printf "\nСписок задач пуст!\n")
-      (begin function)
+       (function)
   )
 )
 
 ;Выводит на экран список задач
 (define (print-tasks)
-  (if (= 0 (gvector-count todo-list))
-      (printf "\nСписок задач пуст!\n")
-      (begin
+  (begin
         (printf "\nСписок задач:\n")
         (for ([idx (in-range (gvector-count todo-list))])
           (printf "~a: ~a\n" (add1 idx) (gvector-ref todo-list idx)))
-      )
   )
 )
 
 ;Выводит на экран список доступных команд
 (define (command-print)
-    (printf "\n\n--------------------- \n")
-    (printf "Доступные команды: \n")
-    (printf "--------------------- \n")
-    (printf "1. Список задач \n")
-    (printf "2. Добавить задачу \n")
-    (printf "3. Удалить задачу \n")
-    (printf "4. Выйти\n")
-    (printf "--------------------- \n")
-    (printf "Введите команду: \n"))
+    (display "--------------------- \n")
+    (display "Доступные команды: \n")
+    (display "--------------------- \n")
+    (display "1. Список задач \n")
+    (display "2. Добавить задачу \n")
+    (display "3. Удалить задачу \n")
+    (display "4. Выйти\n")
+    (display "--------------------- \n")
+    (display "Введите номер команды: "))
 
 (define (main)
   (let loop ()
@@ -54,23 +59,31 @@
       (cond
 
       ((= choice 1)
-         (print-tasks)
-         (loop))
+        (system "clear")
+        (is-empty-todo-list print-tasks)
+        (loop))
 
         ((= choice 2)
-         (printf "Введите задачу: \n")
-         (add-task "aaa")
+          (system "clear")
+          (printf "Введите задачу: ")
+          (read-line)
+          (define input (read-line))
+          (add-task input)
          (loop))
 
         ((= choice 3)
-         (printf "Введите индекс удаляемой задачи: ")
-         (remove-task (read))
+          (system "clear")
+          (is-empty-todo-list print-tasks)
+          (printf "Введите индекс удаляемой задачи: ")
+          (remove-task (read))
          (loop))
 
         ((= choice 4)
+          (system "clear")
          (printf "Выход... \n"))
 
         (else
+          (system "clear")
          (printf "Неверная команда! \n")
          (loop))))))
 
