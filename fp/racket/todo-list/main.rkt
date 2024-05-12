@@ -7,10 +7,15 @@
 (require "./print-tasks.rkt")
 (require "./print-command.rkt")
 (require "./save.rkt")
+(require "./get-todo-list.rkt")
 
-; Создает пустой список (расширяемый вектор)
-(define todo-list (gvector))
+;Имя файла
+(define file-name "file.txt")
 
+; Создать список (расширяемый вектор)
+(define todo-list (get-todo-list file-name))
+
+; Основная функция
 (define (main)
   (let loop ()
     (print-command) ; Выводим список доступных команд
@@ -29,7 +34,7 @@
          (system "clear")
          (printf "Выход..."))
         ((= choice 5) ; Выйти и сохранить
-         (save todo-list))
+         (save todo-list file-name))
         (else ; Обработка на случай если введен номер не из допусимого списка
          (system "clear")
          (printf "Введен недопустимый номер задачи! \n")
