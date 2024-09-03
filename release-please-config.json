@@ -1,10 +1,5 @@
 {
   "release-type": "node",
-  "packages": {
-    ".": {
-      "extra-files": []
-    }
-  },
   "changelog-sections": [
     { "type": "feat", "section": "Features" },
     { "type": "feature", "section": "Features" },
