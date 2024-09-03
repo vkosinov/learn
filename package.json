@@ -1,6 +1,6 @@
 {
   "name": "lern",
-  "version": "2.0.0",
+  "version": "0.1.2",
   "description": "",
   "scripts": {
     "start": "webpack serve --open --mode=development",
